@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 const DiseasesScreen = () => {
         return (
             <View>
-                <Text> DiseasesScreen </Text>
+                <Text> DiseasesScreenm </Text>
             </View>
         );
 };

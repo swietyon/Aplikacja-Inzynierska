@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import AccountScreen from './src/screens/AccountScreen';
+import CurrentCoursesScreen from './src/screens/CurrentCoursesScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import DiseasesScreen from './src/screens/DiseasesScreen';
+import ExcercisesScreen from './src/screens/ExcercisesScreen';
+import SignInScreen from './src/screens/SignInScreen';
+import SingUpScreen from './src/screens/SignUpScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const switchNavigator = createSwitchNavigator({
+  loginFlow: createStackNavigator({
+    SingUp: SingUpScreen,
+    SignIn: SignInScreen
+  }),
+  mainFlow: createBottomTabNavigator({
+    CoursesFlow: createStackNavigator({
+      Diseases: DiseasesScreen,
+      Excercises: ExcercisesScreen
+    }),
+    CurrentCourses:CurrentCoursesScreen,
+    Details: DetailsScreen,
+  })
 });
+
+export default createAppContainer(switchNavigator);

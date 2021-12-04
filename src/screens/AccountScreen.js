@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 const AccountScreen = () => {
         return (
             <View>
-                <Text> AccountScreen </Text>
+                <Text style={{fontSize:30}}> AccountScreen </Text>
             </View>
         );
 };
 
 export default AccountScreen;
+
+

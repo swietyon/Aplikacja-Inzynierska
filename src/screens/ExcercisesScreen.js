@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 
-const ExcercisesScreen = () => {
+const ExcercisesScreen = ( { navigation } ) => {
         return (
             <View>
-                <Text> ExcercisesScreen </Text>
+                <Text style={{fontSize:30}}> ExcercisesScreen </Text>
             </View>
         );
 };

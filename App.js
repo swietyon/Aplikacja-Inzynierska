@@ -24,7 +24,7 @@ import { HeaderBackButton, HeaderBackground } from "react-navigation-stack";
 
 const AuthStack = createNativeStackNavigator();
 
-const AuthSrackScreen = () => {
+const AuthStackScreen = () => {
   return (
     <AuthStack.Navigator>
         <AuthStack.Screen 
@@ -48,7 +48,7 @@ const ProfileStack = createNativeStackNavigator();
 const DiseasesStackScreen = () => (
   <DiseasesStack.Navigator>
     <DiseasesStack.Screen name="Diseases" component={DiseasesScreen} options={{ headerShown:false }} />
-    <DiseasesStack.Screen name="ExcercisesScreen" component={ExcercisesScreen} options={{ headerShown:false }} />
+    <DiseasesStack.Screen name="Excercises" component={ExcercisesScreen} options={{ headerShown:false }} />
   </DiseasesStack.Navigator>
 );
 
@@ -70,7 +70,7 @@ const BottomTabsScreen = () => (
       inactiveColor="#fff"
       barStyle={{ 
         bottom:0,
-        backgroundColor: '#49b8fe', 
+        backgroundColor: '#154c79', 
         position: 'absolute',
         overflow: 'hidden',
         borderTopLeftRadius: 20,
@@ -100,7 +100,7 @@ const DrawerScreen = (style) => {
   return (
     <Drawer.Navigator screenOptions={{
       headerStyle: {
-        backgroundColor: "#49b8fe",
+        backgroundColor: "#154c79",
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         height:100
@@ -126,7 +126,7 @@ const RootStackScreen = ({ userToken }) => {
       {userToken ? (
         <RootStack.Screen name="App" component={DrawerScreen} options={{headerShown:false}}/>
       ):(
-        <RootStack.Screen name="Auth" component={AuthSrackScreen} options={{headerShown:false}}/>
+        <RootStack.Screen name="Auth" component={AuthStackScreen} options={{headerShown:false}}/>
       )}    
     </RootStack.Navigator>
   );

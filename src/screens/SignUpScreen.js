@@ -13,6 +13,7 @@ const SignUpScreen = ( {navigation} ) => {
     const [password, setPassword] = useState('');
     const [sex, setSex] = useState('');
     const [confrimPassword, setConfrimPassword] = useState('');
+
     const { signUp } =  useContext(AuthContext);
 
         return (
@@ -76,7 +77,7 @@ const SignUpScreen = ( {navigation} ) => {
                 <TouchableOpacity
                     title="Nie masz konta? Zarejestru się" 
                     onPress={() => navigation.goBack()}>
-                        <Text style={{color:'#49b8fe'}}>Posiadasz już konto? Zaloguj się!</Text>
+                        <Text style={{color:'#154c79'}}>Posiadasz już konto? Zaloguj się!</Text>
                 </TouchableOpacity>      
             </View>
         );
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     touchableOpacityStyle: {
         width: '80%',
         height: 50,
-        backgroundColor: '#49b8fe',
+        backgroundColor: '#154c79',
         margin:15,
         borderRadius: 10,
         borderColor: '#fff'

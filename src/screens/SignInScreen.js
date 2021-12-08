@@ -45,7 +45,7 @@ const SignInScreen = ( {navigation} ) => {
                     <TouchableOpacity
                         title="Nie masz konta? Zarejestru się" 
                         onPress={() => navigation.navigate(SignUpScreen)}>
-                        <Text style={{color:'#49b8fe'}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
+                        <Text style={{color:'#154c79'}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               
                 </View>
         );
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     touchableOpacityStyle: {
         width: '80%',
         height: 50,
-        backgroundColor: '#49b8fe',
+        backgroundColor: '#154c79',
         margin:15,
         borderRadius: 10,
         borderColor: '#fff'

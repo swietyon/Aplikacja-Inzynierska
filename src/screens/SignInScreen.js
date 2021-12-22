@@ -1,21 +1,19 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { AuthContext } from '../context/context';
+import { DrawerScreen } from '../navigation/Drawer';
 import SignUpScreen from './SignUpScreen';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginForm = () => {
-    const LoginFormSchema = Yup.object().shape({
-        email:Yup.string().email().required('Email jest wymagany'),
-        password:Yup.string()
-        .required()
-        .min(8, 'Hasło powinno zawierać conajmniej 8 znakow')
-    })
-};
+const SignInScreen = () => { 
+    const navigation = useNavigation();   
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    // const [state, signin] =  useContext(AuthContext);
 
-const SignInScreen = ( {navigation} ) => {    
-    const { signIn } =  useContext(AuthContext);
+    console.log({email, password});
+
         return (
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
@@ -30,21 +28,32 @@ const SignInScreen = ( {navigation} ) => {
                         autoFocus={true}
                         textContentType="emailAddress"
                         keyboardType="email-address"
+                        autoCapitalize="none"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <TextInput 
                         placeholder="Password" 
-                        style={styles.inputStyle} 
+                        style={styles.inputStyle}
+                        secureTextEntry 
                         autoFocus={true}
+                        value={password}
+                        onChangeText={setPassword}
+                        autoCapitalize="none"
+                        autoCorrect={false}
                     />
                     <TouchableOpacity
                         style={styles.touchableOpacityStyle}
                         title="Zaloguj się" 
-                        onPress={() => signIn()}>
+                        onPress={() => navigation.navigate(DrawerScreen)}
+                        // onPress={() => signin()}
+                        >
                         <Text style={styles.textStyle}>Zaloguj się</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        title="Nie masz konta? Zarejestru się" 
-                        onPress={() => navigation.navigate(SignUpScreen)}>
+                        title="Nie masz konta? Zarejestruj się" 
+                        onPress={() => navigation.navigate(SignUpScreen)}
+                         >
                         <Text style={{color:'#154c79'}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               
                 </View>

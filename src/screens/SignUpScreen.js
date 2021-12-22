@@ -1,23 +1,24 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { TextInput } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { StyleSheet, View, Image, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AuthContext } from '../context/context';
+import { Context as AuthContext } from '../context/AuthContext';
 
 const SignUpScreen = ( {navigation} ) => {
+    const {state, signup} =  useContext(AuthContext);
+
     const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [birth, setBirth] = useState('');
     const [password, setPassword] = useState('');
-    const [sex, setSex] = useState('');
+    const [gender, setGender] = useState('');
     const [confrimPassword, setConfrimPassword] = useState('');
 
-    const { signUp } =  useContext(AuthContext);
-
         return (
-            <View style={styles.container}>
+            <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
@@ -34,8 +35,8 @@ const SignUpScreen = ( {navigation} ) => {
                 />
                 <TextInput
                     placeholder='Imię' 
-                    value={name} 
-                    onChangeText={setName}
+                    value={username} 
+                    onChangeText={setUsername}
                     style={styles.inputStyle}
                 />
                 <TextInput
@@ -46,8 +47,8 @@ const SignUpScreen = ( {navigation} ) => {
                 />
                 <TextInput
                     placeholder='Płeć' 
-                    value={sex} 
-                    onChangeText={setSex}
+                    value={gender} 
+                    onChangeText={setGender}
                     style={styles.inputStyle}
                 />
                 <TextInput
@@ -68,35 +69,48 @@ const SignUpScreen = ( {navigation} ) => {
                     autoCorrect={false}
                     style={styles.inputStyle}
                 />
+                {state.errorMessage ? (
+                <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+                 ) : null}
                 <TouchableOpacity
                     style={styles.touchableOpacityStyle}
-                    title="Cofnij"
-                    onPress={() => signUp()}>
+                    onPress={() => 
+                        // {
+                        // if (
+                            signup({ email, username, birth, gender, password }) 
+                    //     == true){
+                    //         navigation.navigate("DrawerScreen");
+                    //     }
+                    //     else {
+                    //         console.log(signup({ email, username, birth, gender, password }));
+                    //         console.log("Nie udało się zalogować panie kolego");
+                    //     }
+                    // }}
+                    }
+                >
                         <Text style={styles.textStyle}>Zarejestruj się</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    title="Nie masz konta? Zarejestru się" 
                     onPress={() => navigation.goBack()}>
                         <Text style={{color:'#154c79'}}>Posiadasz już konto? Zaloguj się!</Text>
-                </TouchableOpacity>      
-            </View>
+                </TouchableOpacity>  
+                </View>    
+            </ScrollView>
         );
 };
 
-
-SignUpScreen.navigationOptions = () => {
-    return {
-      headerShown: false
-    };
-};
-
 const styles = StyleSheet.create({
+    errorMessage: {
+        fontSize:16,
+        color:'red'
+    },
     container: {
         flex:1,
         backgroundColor: 'white',
         paddingTop: 20,
         paddingHorizontal: 12,
         alignItems: 'center',
+        paddingBottom:50
     },
     logoContainer: {
         alignItems: 'center',

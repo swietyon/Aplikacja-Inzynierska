@@ -3,7 +3,6 @@ import { StyleSheet, Text, Pressable } from 'react-native';
 
 module.exports = StyleSheet.create({
     Container: {
-       justifyContent: 'center', //Centered horizontally
        alignItems: 'center', //Centered vertically
        flex:1
     },
@@ -19,7 +18,7 @@ module.exports = StyleSheet.create({
       alignSelf:'center'
   },
   touchableOpacityStyle: {
-      width: '80%',
+      width: 120,
       height: 50,
       backgroundColor: '#154c79',
       margin:15,
@@ -35,14 +34,14 @@ module.exports = StyleSheet.create({
       textTransform: 'uppercase',
   },
   textStyle2: {
-      fontSize: 20,
+      fontSize: 17,
       color: '#fff',
       fontWeight: 'bold',
       alignSelf: 'center',
-      marginTop:5
+      marginTop:10
   },
   Element: {
-      width: '90%',
+      width: 300,
       height: 150,
       backgroundColor: '#f1f1f1',
       marginTop:15,
@@ -61,9 +60,16 @@ module.exports = StyleSheet.create({
         bottom: 0,
         right: 0,
       },
-       video: {
-           backgroundColor:"black",
-           width:"100%",
-           height:200
-       }
+    video: {
+       backgroundColor:"black",
+       width:"100%",
+       height:200
+    },
+    backButton:{
+    },
+    itemsInline:{
+        position:'absolute',
+        flexDirection: 'row',
+        bottom:80,
+    }
 });

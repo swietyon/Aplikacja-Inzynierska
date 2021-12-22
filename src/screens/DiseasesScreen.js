@@ -1,89 +1,47 @@
 import React from 'react';
-import { Image, StyleSheet, ScrollView, View} from 'react-native';
+import { useState } from 'react';
+import { Image, StyleSheet, ScrollView, View, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
+import ExcercisesScreen from './ExcercisesScreen';
 
 const DiseasesScreen = ( { navigation } ) => {
     const s = require('../components/Styles');
+
+    const [rehabs, setRehabs] = useState([
+            { title: 'Rehabilitacja kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
+            { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
+            { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
+            { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
+            { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/knee.png'), key: '5' }, 
+            { title: 'Rehabilitacja dolnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '6' }
+        ]);
+
         return (  
-                <ScrollView contentContainerStyle={{
+                <FlatList 
+                contentContainerStyle={{
                     paddingBottom:60,
                     alignItems: 'center',
                     backgroundColor:'#fff'
-                }}>    
-                    <View style={s.Element}>
+                }}
+                data={rehabs}
+                renderItem={({item}) => (
+                    <TouchableOpacity onPress={() => navigation.navigate("Excercises", item)}>    
+                        <View style={s.Element}>
                             <View style={s.TopPart}>
-                                <Text style={s.textStyle2}> 1 schorzenie </Text>
-                                <TouchableOpacity>
+                                <Text style={s.textStyle2}>{item.title}</Text> 
                                 <View style={s.BottomPart}>
                                     <Image 
                                     style={s.img} 
-                                    source={require('../img/knee.png')} 
+                                    source={item.imgLink} 
                                     />
-                                </View>
-                                </TouchableOpacity>
+                                </View>  
                             </View>
-                    </View>
-                    <View style={s.Element}>
-                            <View style={s.TopPart}>
-                                <Text style={s.textStyle2}> 1 schorzenie </Text>
-                                <TouchableOpacity>
-                                <View style={s.BottomPart}>
-                                    <Image 
-                                    style={s.img} 
-                                    source={require('../img/groin.png')} 
-                                    />
-                                </View>
-                                </TouchableOpacity>
-                            </View>
-                    </View>
-                    <View style={s.Element}>
-                            <View style={s.TopPart}>
-                                <Text style={s.textStyle2}> 1 schorzenie </Text>
-                                <TouchableOpacity>
-                                <View style={s.BottomPart}>
-                                    <Image 
-                                    style={s.img} 
-                                    source={require('../img/shoulder.png')} 
-                                    />
-                                </View>
-                                </TouchableOpacity>
-                            </View>
-                    </View>
-                    <View style={s.Element}>
-                            <View style={s.TopPart}>
-                                <Text style={s.textStyle2}> 1 schorzenie </Text>
-                                <TouchableOpacity>
-                                <View style={s.BottomPart}>
-                                    <Image 
-                                    style={s.img} 
-                                    source={require('../img/lowerback.png')} 
-                                    />
-                                </View>
-                                </TouchableOpacity>
-                            </View>
-                    </View>
-                    <View style={s.Element}>
-                            <View style={s.TopPart}>
-                                <Text style={s.textStyle2}> 1 schorzenie </Text>
-                                <TouchableOpacity>
-                                <View style={s.BottomPart}>
-                                    <Image 
-                                    style={s.img} 
-                                    source={require('../img/groin.png')} 
-                                    />
-                                </View>
-                                </TouchableOpacity>
-                            </View>
-                    </View>
-
-                <TouchableOpacity
-                    style={s.touchableOpacityStyle}
-                    title="Przejdź do ćwiczeń" 
-                    onPress={() => navigation.navigate("Excercises")}>
-                    <Text style={s.textStyle}>Przejdź do ćwiczeń</Text>
-                </TouchableOpacity> 
-                </ScrollView>
+                        </View>  
+                    </TouchableOpacity>    
+                )}        
+                >    
+                </FlatList>
         );
 };
 

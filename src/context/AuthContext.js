@@ -25,9 +25,9 @@ const tryLocalSignin = (dispatch) => async () => {
   console.log(token);
   if (token) {
     dispatch({ type: "signin", payload: token });
-    navigate("DrawerScreen");
+    RootNavigation.navigate("DrawerScreen");
   } else {
-    navigate("Signup");
+    RootNavigation.navigate("Signup");
   }
 };
 

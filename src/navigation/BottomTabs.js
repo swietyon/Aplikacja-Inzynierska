@@ -17,7 +17,7 @@ const BottomTabs = () => {
       tabBarActiveBackgroundColor: '#fff',
       tabBarInactiveBackgroundColor: '#154c79',
       tabBarStyle:{
-        height:70,
+        height:60,
         borderTopRightRadius:15,
         borderTopLeftRadius:15,
         position:"absolute",
@@ -51,7 +51,10 @@ const BottomTabs = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="bell" color={color} size={size} />
           ),
-          tabBarBadge: 3,
+          tabBarBadge: 19,
+          tabBarBadgeStyle:{
+            backgroundColor:'#fadfad'
+          }
         }}
       />
       <Tab.Screen

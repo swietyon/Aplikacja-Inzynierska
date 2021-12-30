@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import ExcercisesScreen from './ExcercisesScreen';
 
-const DiseasesScreen = ( { navigation } ) => {
+const DiseasesScreen = ( { route, navigation }) => {
     const s = require('../components/Styles');
 
     const [rehabs, setRehabs] = useState([
@@ -13,14 +13,14 @@ const DiseasesScreen = ( { navigation } ) => {
             { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
             { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
             { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-            { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/knee.png'), key: '5' }, 
-            { title: 'Rehabilitacja dolnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '6' }
+            { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
+            { title: 'Rehabilitacja stawu skokowego', icon: 9, imgLink: require('../img/ankle.png'), key: '6' }
         ]);
 
         return (  
                 <FlatList 
                 contentContainerStyle={{
-                    paddingBottom:60,
+                    paddingBottom:"20%",
                     alignItems: 'center',
                     backgroundColor:'#fff'
                 }}

@@ -16,7 +16,7 @@ const DrawerScreen = () => {
         backgroundColor: "#154c79",
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        height:100
+        height:80
       },
       headerTintColor: '#fff',
       headerTitleStyle: {

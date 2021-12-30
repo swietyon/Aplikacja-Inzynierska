@@ -2,7 +2,6 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DrawerScreen } from "./Drawer";
 import { AuthStackScreen } from "./StackNavigation";
-import { AuthContext } from "../context/context";
 
 const RootStack = createNativeStackNavigator();
 const RootStackScreen = () => {

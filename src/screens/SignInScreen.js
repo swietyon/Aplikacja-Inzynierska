@@ -2,15 +2,16 @@ import React from 'react';
 import { useContext, useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { DrawerScreen } from '../navigation/Drawer';
-import SignUpScreen from './SignUpScreen';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationEvents } from 'react-navigation';
 
-const SignInScreen = () => { 
-    const navigation = useNavigation();   
+import SignUpScreen from './SignUpScreen';
+import { Context as AuthContext } from '../context/AuthContext';
+
+const SignInScreen = ({navigation}) => { 
+    const s = require('../components/Styles'); 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [state, signin] =  useContext(AuthContext);
+    const {state, signin, clearErrorMessage} =  useContext(AuthContext);
 
     console.log({email, password});
 
@@ -24,7 +25,7 @@ const SignInScreen = () => {
                 </View>
                     <TextInput 
                         placeholder="E-mail" 
-                        style={styles.inputStyle} 
+                        style={s.inputStyle} 
                         autoFocus={true}
                         textContentType="emailAddress"
                         keyboardType="email-address"
@@ -34,7 +35,7 @@ const SignInScreen = () => {
                     />
                     <TextInput 
                         placeholder="Password" 
-                        style={styles.inputStyle}
+                        style={s.inputStyle}
                         secureTextEntry 
                         autoFocus={true}
                         value={password}
@@ -42,17 +43,23 @@ const SignInScreen = () => {
                         autoCapitalize="none"
                         autoCorrect={false}
                     />
+                    {state.errorMessage ? (
+                    <Text style={s.errorMessage}>{state.errorMessage}</Text>
+                    ) : null}
                     <TouchableOpacity
-                        style={styles.touchableOpacityStyle}
+                        style={s.touchableOpacityStyle}
                         title="Zaloguj się" 
-                        onPress={() => navigation.navigate(DrawerScreen)}
-                        // onPress={() => signin()}
+                        onPress={() => signin({ email, password })}
+                        // onPress={() => navigation.navigate('DrawerScreen')}
                         >
-                        <Text style={styles.textStyle}>Zaloguj się</Text>
+                        <Text style={s.textStyle}>Zaloguj się</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         title="Nie masz konta? Zarejestruj się" 
-                        onPress={() => navigation.navigate(SignUpScreen)}
+                        onPress={() => {
+                            navigation.goBack();
+                            clearErrorMessage();
+                            }}
                          >
                         <Text style={{color:'#154c79'}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               

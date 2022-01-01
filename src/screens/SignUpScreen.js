@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { useContext } from 'react';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { StyleSheet, View, Image, Text} from 'react-native';
@@ -9,7 +8,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 const SignUpScreen = ( {navigation} ) => {
     const s = require('../components/Styles');
-    const {state, signup, clearErrorMessage, tryLocalSignin} =  useContext(AuthContext);
+    const {state, signup, clearErrorMessage } =  useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -17,10 +16,6 @@ const SignUpScreen = ( {navigation} ) => {
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('');
     const [confrimPassword, setConfrimPassword] = useState('');
-
-    useEffect (() => {
-        tryLocalSignin();
-    }, []);
 
         return (
             <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>

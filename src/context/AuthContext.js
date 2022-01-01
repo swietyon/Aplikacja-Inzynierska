@@ -27,7 +27,7 @@ const tryLocalSignin = (dispatch) => async () => {
     dispatch({ type: "signin", payload: token });
     RootNavigation.navigate("DrawerScreen");
   } else {
-    RootNavigation.navigate("Signup");
+    RootNavigation.navigate("AuthStackScreen");
   }
 };
 
@@ -40,7 +40,6 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "signup", payload: response.data.token });
-    console.log("tutaj nawigujemy");
     RootNavigation.navigate('DrawerScreen');
   }  
   catch (err) {
@@ -71,7 +70,7 @@ const signin = (dispatch) => async ({ email, password }) => {
 const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: "signout" });
-  navigate("loginFlow");
+  RootNavigation.navigate("AuthStackScreen");
 };
 
 export const { Provider, Context } = createDataContext(

@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
-import { Image, StyleSheet, ScrollView, View, FlatList} from 'react-native';
+import { useState, useEffect} from 'react';
+import { Image, StyleSheet, View, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
-import ExcercisesScreen from './ExcercisesScreen';
 
-const DiseasesScreen = ( { route, navigation }) => {
+const DiseasesScreen = ( { navigation }) => {
     const s = require('../components/Styles');
+    
 
     const [rehabs, setRehabs] = useState([
             { title: 'Rehabilitacja kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
@@ -26,10 +26,11 @@ const DiseasesScreen = ( { route, navigation }) => {
                 }}
                 data={rehabs}
                 renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => navigation.navigate("Excercises", item)}>    
+                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item)}}>    
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 
+                                 
                                 <View style={s.BottomPart}>
                                     <Image 
                                     style={s.img} 

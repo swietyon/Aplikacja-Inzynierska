@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { Text, View, Button , FlatList, StyleSheet} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
@@ -14,6 +14,7 @@ import { Icon } from 'react-native-elements';
 // }
 
 const ExcercisesScreen = ( { route, navigation } ) => {
+    const s = require('../components/Styles'); 
     const [excercises, setExcercises] = useState([
         { diseases_Id:1, imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '1' },
         { diseases_Id:2, imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '2' },
@@ -21,12 +22,12 @@ const ExcercisesScreen = ( { route, navigation } ) => {
         { diseases_Id:4, imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '4' },
         { diseases_Id:5, imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '5' },
         { diseases_Id:6, imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '6' }
-    ]);
-
+    ], []);
+    
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
-    const s = require('../components/Styles');
     const {title, icon, imgLink, key} = route.params;
+    
         return (
             <>
             <View style={styles.container}>

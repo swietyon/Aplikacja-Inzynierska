@@ -3,9 +3,9 @@ import { Text, Button, View, StyleSheet, FlatList, ScrollView} from 'react-nativ
 import { Video } from 'expo-av';
 
 const AccountScreen = () => {
+    const s = require('../components/Styles'); 
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
-    const s = require('../components/Styles');
     return (
       <ScrollView>
         <View>

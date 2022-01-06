@@ -8,9 +8,9 @@ const authReducer = (state, action) => {
     case "add_error":
       return { ...state, errorMessage: action.payload };
     case "signin":
-      return { errorMessage: "", token: action.payload };
+      return { token: action.payload, errorMessage: ""};
     case "signup":
-      return { errorMessage: "", token: action.payload };
+      return { token: action.payload, errorMessage: ""};
     case "clear_error_message":
       return { ...state, errorMessage: "" };
     case "signout":
@@ -40,7 +40,10 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "signup", payload: response.data.token });
-    RootNavigation.navigate('DrawerScreen');
+      console.log(response);
+      const user = response.data.user;
+      console.log(user);
+      RootNavigation.navigate('DrawerScreen', user);
   }  
   catch (err) {
       dispatch({
@@ -73,8 +76,9 @@ const signout = (dispatch) => async () => {
   RootNavigation.navigate("AuthStackScreen");
 };
 
+
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage, tryLocalSignin },
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin, emailValidation, dateValidation, passwordValidation, passwordCompare},
   { token: null, errorMessage: "" }
 );

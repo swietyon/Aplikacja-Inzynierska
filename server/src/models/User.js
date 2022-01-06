@@ -34,7 +34,6 @@ userSchema.pre('save', function(next) {
     if(!user.isModified('password')) {
         return next();
     }
-
     bcrypt.genSalt(10, (err, salt) => {
         if (err) {
             return next(err);
@@ -64,4 +63,5 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword)
     });
 }
 
-mongoose.model('User', userSchema);
+const User=mongoose.model('User', userSchema);
+module.exports=User;

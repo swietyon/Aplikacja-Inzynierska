@@ -2,21 +2,74 @@ import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { DateInput } from 'react-native-date-input';
 import { StyleSheet, View, Image, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Context as AuthContext } from '../context/AuthContext';
+import MaskInput from 'react-native-mask-input';
+import Icon from 'react-native-vector-icons/Ionicons';
+import RadioButton from '../components/RadioButton';
+
 
 const SignUpScreen = ( {navigation} ) => {
     const s = require('../components/Styles');
-    const {state, signup, clearErrorMessage } =  useContext(AuthContext);
+    const {state, signup, clearErrorMessage,
+            emailValidation } =  useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [birth, setBirth] = useState('');
     const [password, setPassword] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('man');
     const [confrimPassword, setConfrimPassword] = useState('');
 
+    let reg=/(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([\t]*\r\n)?[\t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([\t]*\r\n)?[\t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+
+    const PROP = [
+        {
+            key: 'mężczyzna',
+            text: 'mężczyzna',
+            value: 'man'
+        },
+        {
+            key: 'kobieta',
+            text: 'kobieta',
+            value: 'woman'
+        },
+    ];
+
+    const validationEmail = () => {
+        if (state.errorMessage && ( reg.test(email) === false )) {
+            return (<Text style={s.errorMessage}>Email powinien zawierać poprawny format</Text>)
+        } 
+        else {
+            return true;
+        }
+    }
+    const validationPassword = () => {
+        if (state.errorMessage && (password.trim().length < 8)) {
+            return(<Text style={s.errorMessage}>Hasło powinno zawierać 8 znaków</Text>)
+        }
+        else {
+            return true;
+        }
+    }
+    const validationConfrimPassword = () => {
+        if (state.errorMessage && password != confrimPassword) {
+            return(<Text style={s.errorMessage}>Hasła powinny się zgadzać</Text>)
+        }
+        else {
+            return true;
+        }
+    }
+
+    const onSubmit = () => {
+        if (validationEmail() && validationPassword() && validationConfrimPassword() === true);
+            signup({ email, username, birth, gender, password });
+    }
+
+    
+        
         return (
             <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.container}>
@@ -26,56 +79,64 @@ const SignUpScreen = ( {navigation} ) => {
                         style={{width: 350, height: 150, marginBottom: 30}} 
                     />
                 </View>
+
+                <Text>E-mail</Text>
                 <TextInput 
                     keyboardType='email-address'
-                    placeholder='Adres e-mail' 
                     value={email} 
                     onChangeText={setEmail}
                     autoCapitalize='none'
                     style={s.inputStyle}
                 />
+                {validationEmail()}
+
+                <Text>Imię</Text>
                 <TextInput
-                    placeholder='Imię' 
                     value={username} 
                     onChangeText={setUsername}
                     style={s.inputStyle}
                 />
-                <TextInput
-                    placeholder='Data urodzenia' 
-                    value={birth} 
-                    onChangeText={setBirth}
+
+                <Text>Data urodzenia:</Text>
+                <MaskInput
+                    type={'datetime'}
+                    value={birth}
+                    onChangeText={(masked) => {
+                        setBirth(masked); 
+                      }}
                     style={s.inputStyle}
+                    mask={[/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
                 />
-                <TextInput
-                    placeholder='Płeć' 
-                    value={gender} 
-                    onChangeText={setGender}
-                    style={s.inputStyle}
-                />
+
+                <Text>Hasło:</Text>
                 <TextInput
                     secureTextEntry
-                    placeholder='Hasło' 
                     value={password} 
                     onChangeText={setPassword}
                     autoCapitalize='none'
                     autoCorrect={false}
                     style={s.inputStyle}
                 />
+                {validationPassword()}
+
+                <Text>Powtórz hasło:</Text>
                 <TextInput
                     secureTextEntry
-                    placeholder='Powtórz hasło' 
                     value={confrimPassword} 
                     onChangeText={setConfrimPassword}
                     autoCapitalize='none'
                     autoCorrect={false}
                     style={s.inputStyle}
                 />
-                {state.errorMessage ? (
-                <Text style={s.errorMessage}>{state.errorMessage}</Text>
-                 ) : null}
+                {validationConfrimPassword()}
+
+                <View style={styles.itemsInline}>
+                    <RadioButton PROP={PROP}/>  
+                </View>
+
                 <TouchableOpacity
                     style={s.touchableOpacityStyle}
-                    onPress={() => signup({ email, username, birth, gender, password })}
+                    onPress={() => onSubmit()}
                 >
                         <Text style={s.textStyle}>Zarejestruj się</Text>
                 </TouchableOpacity>
@@ -91,12 +152,10 @@ const SignUpScreen = ( {navigation} ) => {
             </ScrollView>
         );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: 'white',
-        paddingTop: 20,
         paddingHorizontal: 12,
         alignItems: 'center',
         paddingBottom:50
@@ -104,7 +163,21 @@ const styles = StyleSheet.create({
     logoContainer: {
         alignItems: 'center',
         marginTop: 60
-    }
+    },
+    itemsInline:{
+        alignSelf:'center',
+        flexDirection: 'row',
+        margin:-8
+    },
+    iconStyle:{
+        textAlign: 'center',
+        marginTop:10
+    },
+    containerRadio: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
 });
 
 export default SignUpScreen;

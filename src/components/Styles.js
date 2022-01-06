@@ -7,8 +7,11 @@ module.exports = StyleSheet.create({
        flex:1
     },
     errorMessage: {
+        marginTop:-5,
+        marginBottom:5,
         fontSize:16,
-        color:'red'
+        color:'red',
+        opacity:0.6
     },
     Images: {
        justifyContent: 'center', //Centered horizontally
@@ -25,12 +28,14 @@ module.exports = StyleSheet.create({
         marginBottom:10,
         backgroundColor:'#F2F2F2', 
         width: '100%',
-        height:50, 
+        height:40, 
         borderColor:'white', 
         borderWidth: 2, 
         borderRadius:10,
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        borderColor: '#154c79',
+        borderWidth:0.5
     },
     touchableOpacityStyle: {
         height: 50,

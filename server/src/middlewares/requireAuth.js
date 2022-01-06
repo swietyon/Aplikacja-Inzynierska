@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
     }
 
     const token = authorization.replace('Bearer ', '');
+
     jwt.verify(token,'MY_SECRET_KEY', async (err, payload) => {
         if (err) {
             return res.status(401).send({ error: 'Musisz być zalogowany'});
@@ -22,4 +23,6 @@ module.exports = (req, res, next) => {
         req.user = user;
         next();
     });
-};
+    
+}
+    

@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
 
 const RulesScreen = () => {
+    const s = require('../components/Styles'); 
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     return (

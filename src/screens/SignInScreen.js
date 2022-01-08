@@ -23,8 +23,8 @@ const SignInScreen = ({navigation}) => {
                         style={{width: 350, height: 150, marginBottom: 30}} 
                     />
                 </View>
+                <Text>E-mail:</Text>
                     <TextInput 
-                        placeholder="E-mail" 
                         style={s.inputStyle} 
                         autoFocus={true}
                         textContentType="emailAddress"
@@ -33,8 +33,8 @@ const SignInScreen = ({navigation}) => {
                         value={email}
                         onChangeText={setEmail}
                     />
+                <Text>Hasło:</Text>
                     <TextInput 
-                        placeholder="Password" 
                         style={s.inputStyle}
                         secureTextEntry 
                         autoFocus={true}
@@ -50,7 +50,6 @@ const SignInScreen = ({navigation}) => {
                         style={s.touchableOpacityStyle}
                         title="Zaloguj się" 
                         onPress={() => signin({ email, password })}
-                        // onPress={() => navigation.navigate('DrawerScreen')}
                         >
                         <Text style={s.textStyle}>Zaloguj się</Text>
                     </TouchableOpacity>
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 60
+        marginTop: 10
     },
     inputStyle: {
         marginBottom:10,

@@ -9,7 +9,7 @@ export default class RadioButton extends Component {
 	render() {
 		const { PROP } = this.props;
 		const { value } = this.state;
-
+    
 		return (
 			<View>
 				{PROP.map(res => {
@@ -34,6 +34,8 @@ export default class RadioButton extends Component {
 	}
 }
 
+
+
 const styles = StyleSheet.create({
 	container: {
         marginTop:10,
@@ -44,13 +46,13 @@ const styles = StyleSheet.create({
 	},
     radioText: {
         marginRight: 35,
-        fontSize: 20,
+        fontSize: 17,
         color: '#000',
         fontWeight: '700'
     },
 	radioCircle: {
-		height: 30,
-		width: 30,
+		height: 20,
+		width: 20,
 		borderRadius: 100,
 		borderWidth: 2,
 		borderColor: '#154c79',
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	selectedRb: {
-        height: 15,
-		width: 15,
+        height: 10,
+		width: 10,
 		borderRadius: 50,
 		backgroundColor: '#154c79',
     },

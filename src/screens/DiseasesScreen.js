@@ -26,11 +26,10 @@ const DiseasesScreen = ( { navigation }) => {
                 }}
                 data={rehabs}
                 renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item)}}>    
+                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item);console.log("DiseasesScreen");}}>    
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 
-                                 
                                 <View style={s.BottomPart}>
                                     <Image 
                                     style={s.img} 

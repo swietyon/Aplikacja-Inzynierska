@@ -48,7 +48,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
   catch (err) {
       dispatch({
         type: "add_error",
-        payload: "Wystąpił błąd przy rejestracji",
+        payload: "Wystąpił błąd przy rejestracji. Spróbuj zmienić adres email",
       });
   }
   
@@ -79,6 +79,6 @@ const signout = (dispatch) => async () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage, tryLocalSignin, emailValidation, dateValidation, passwordValidation, passwordCompare},
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin},
   { token: null, errorMessage: "" }
 );

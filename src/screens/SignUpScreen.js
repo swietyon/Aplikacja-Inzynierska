@@ -13,8 +13,7 @@ import RadioButton from '../components/RadioButton';
 
 const SignUpScreen = ( {navigation} ) => {
     const s = require('../components/Styles');
-    const {state, signup, clearErrorMessage,
-            emailValidation } =  useContext(AuthContext);
+    const {state, signup, clearErrorMessage} =  useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -58,6 +57,9 @@ const SignUpScreen = ( {navigation} ) => {
         if (state.errorMessage && password != confrimPassword) {
             return(<Text style={s.errorMessage}>Hasła powinny się zgadzać</Text>)
         }
+        else if (state.errorMessage && confrimPassword.trim().length == 0) {
+            return(<Text style={s.errorMessage}>Pole powinno zostać wypełnione</Text>)
+        }
         else {
             return true;
         }
@@ -68,7 +70,7 @@ const SignUpScreen = ( {navigation} ) => {
             signup({ email, username, birth, gender, password });
     }
 
-    
+    console.log(gender);
         
         return (
             <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
@@ -133,7 +135,9 @@ const SignUpScreen = ( {navigation} ) => {
                 <View style={styles.itemsInline}>
                     <RadioButton PROP={PROP}/>  
                 </View>
-
+                {state.errorMessage ? (
+                    <Text style={s.errorMessage}>{state.errorMessage}</Text>
+                    ) : null}
                 <TouchableOpacity
                     style={s.touchableOpacityStyle}
                     onPress={() => onSubmit()}
@@ -158,7 +162,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingHorizontal: 12,
         alignItems: 'center',
-        paddingBottom:50
+        paddingBottom:50,
+
     },
     logoContainer: {
         alignItems: 'center',

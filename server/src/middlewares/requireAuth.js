@@ -23,6 +23,10 @@ module.exports = (req, res, next) => {
         req.user = user;
         next();
     });
+
+    if (db.getCollectionNames().length === 0) {
+        token = null;
+    }
     
 }
     

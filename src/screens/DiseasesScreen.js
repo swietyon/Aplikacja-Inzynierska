@@ -6,17 +6,20 @@ import { Text } from 'react-native-elements';
 
 const DiseasesScreen = ( { navigation }) => {
     const s = require('../components/Styles');
+    const data = ([
+        { title: 'Rehabilitacja kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
+        { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
+        { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
+        { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
+        { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
+        { title: 'Rehabilitacja stawu skokowego', icon: 9, imgLink: require('../img/ankle.png'), key: '6' }
+    ])
+
+    const [rehabs, setRehabs] = useState([]);
     
-
-    const [rehabs, setRehabs] = useState([
-            { title: 'Rehabilitacja kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
-            { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
-            { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
-            { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-            { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
-            { title: 'Rehabilitacja stawu skokowego', icon: 9, imgLink: require('../img/ankle.png'), key: '6' }
-        ]);
-
+    useEffect(() => {
+        setRehabs(data);
+    }, []);
         return (  
                 <FlatList 
                 contentContainerStyle={{

@@ -1,61 +1,106 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-//lecimy z propsami tutaj i się nauczymy ich na nowo :)
 
-const RulesScreen = ({navigation}) => {
+
+const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
+  const data = ([
+    { title: 'Regulamin ćwiczącego', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
+    { title: 'Ćwiczenia z MedApp', icon: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/groin.png'), key: '2' },
+    { title: 'Rozgrzewka', icon: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/shoulder.png'), key: '3' }, 
+    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
+    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
+    { title: 'Zasada3', icon: 9, imgLink: require('../img/shoulder.png'), key: '6' }, 
+    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '7' },
+    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '8' },
+    { title: 'Zasada3', icon: 9, imgLink: require('../img/shoulder.png'), key: '9' }, 
+    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '10' },
+    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '11' },
+    { title: 'Twórcy', icon: 9, imgLink: require('../img/ankle.png'), key: '12' }
+  ])
+
+  const [rules, setRules] = useState([]);
+
+  useEffect(() => {
+    setRules(data);
+  }, []);
+
+  const [i,setI] = useState('0');
+  const [helper, setHelper] = useState('0');
+
+  const myfunction = (item) => {
+    if (i == '0'){
+      setHelper(item);
+      setI('1');
+      return(i);
+    }
+    else if (item != helper) {
+      setI('1');
+      return(i);
+    }
+    else{
+      setHelper(item);
+      setI('0');
+      return(i);
+    }
+  }
       return (
         <View style={styles.container}>
-          <View style={styles.TopPart}>
-            <Text style={styles.textStyle}>Zasady ćwiczenia</Text>
-          </View>
-          <View style={styles.bottomPart}>
-            <Text style={styles.textStyle2}>
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-              Jesteśmy zawsze tam, gdzie nasza wisła gra
-            </Text>                   
-          </View>                               
+          <FlatList 
+            style={styles.container}
+            data={rules}
+            renderItem={({item}) => (
+              <TouchableOpacity onPress={() => {myfunction(item.key)}}>
+                <View style={styles.elements}>
+                  <View style={styles.element}>
+                    <Text style={styles.textStyle}>{item.title}</Text>
+                  </View>
+                    <View>
+                      {((i == '1') && item.key == helper) ?
+                      <Text style={styles.smallerText}>{item.icon}</Text>:
+                      null}
+                    </View>
+     
+                </View>
+              </TouchableOpacity>
+            )
+          }
+          /> 
+          
         </View>
-        );
-};
+        
+)};
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor:'white',
+    paddingBottom:40
+  },
+  elements: {
+    width:"95%",
+    marginLeft:10,
+  },
+  element: {
+    borderBottomWidth:1,
+    opacity:0.7,
+    borderBottomColor:'#154c79',
+  },
   textStyle: {
-    marginTop:8,
-    fontSize: 18,
-    color: '#fff',
+    margin:25,
+    fontSize:20,
     fontWeight: 'bold',
-    alignSelf: 'center',
+    color:'#154c79',
     textTransform: 'uppercase',
   },
-  textStyle2: {
-      fontSize: 30,
-      color: 'black',
-      fontWeight: 'bold',
-      alignSelf: 'center'
-  },
-  TopPart: {
-      height:40,
-      backgroundColor: '#154c79',
-      borderTopEndRadius: 10,
-      borderTopLeftRadius: 10
-  },
-  container: {
-    margin:20,
-    backgroundColor:'green'
-  },
-  bottomPart: {
-
+  smallerText: {
+    fontSize: 16,
+    borderBottomColor: '#154c79',
+    borderBottomWidth: 1,
+    backgroundColor: '#f2f7ff',
+    color: '#082c66'
   }
 })
 

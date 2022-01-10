@@ -25,7 +25,7 @@ const tryLocalSignin = (dispatch) => async () => {
   console.log(token);
   if (token) {
     dispatch({ type: "signin", payload: token });
-    RootNavigation.navigate("DrawerScreen");
+    RootNavigation.navigate("DrawerScreen", token);
   } else {
     RootNavigation.navigate("AuthStackScreen");
   }
@@ -40,10 +40,9 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "signup", payload: response.data.token });
-      console.log(response);
-      const user = response.data.user;
-      console.log(user);
-      RootNavigation.navigate('DrawerScreen', user);
+    const user = response.data.user;
+    console.log(user);
+    RootNavigation.navigate('DrawerScreen', response.data.token);
   }  
   catch (err) {
       dispatch({
@@ -59,7 +58,9 @@ const signin = (dispatch) => async ({ email, password }) => {
     const response = await trackerApi.post("/signin", { email, password });
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "signin", payload: response.data.token });
-    RootNavigation.navigate("DrawerScreen");
+      const user = response.data.user;
+      console.log(user);
+      RootNavigation.navigate('DrawerScreen', user);
   } 
   catch (err) {
     console.log(err);

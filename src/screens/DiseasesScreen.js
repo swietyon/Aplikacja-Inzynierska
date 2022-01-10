@@ -19,8 +19,16 @@ const DiseasesScreen = ( { navigation }) => {
     
     useEffect(() => {
         setRehabs(data);
+        console.log("Zalogowany");
     }, []);
         return (  
+            <>  
+                <View>
+                    <TouchableOpacity>
+                        <Text style={s.textStyle2}>Dzien dolkdsaddddfaslflksafslkflakbry</Text>
+                    </TouchableOpacity>  
+                </View>
+
                 <FlatList 
                 contentContainerStyle={{
                     paddingBottom:"20%",
@@ -29,7 +37,7 @@ const DiseasesScreen = ( { navigation }) => {
                 }}
                 data={rehabs}
                 renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item);console.log("DiseasesScreen");}}>    
+                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item)}}>    
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 
@@ -40,11 +48,13 @@ const DiseasesScreen = ( { navigation }) => {
                                     />
                                 </View>  
                             </View>
+                            
                         </View>  
                     </TouchableOpacity>    
                 )}        
-                >    
+                > 
                 </FlatList>
+                </> 
         );
 };
 

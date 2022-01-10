@@ -12,9 +12,7 @@ const SignInScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {state, signin, clearErrorMessage} =  useContext(AuthContext);
-
-    console.log({email, password});
-
+    
         return (
             <View style={styles.container}>
                 <View style={styles.logoContainer}>

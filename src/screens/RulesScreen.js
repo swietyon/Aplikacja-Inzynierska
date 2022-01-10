@@ -91,12 +91,11 @@ const styles = StyleSheet.create({
   textStyle: {
     margin:25,
     fontSize:20,
-    fontWeight: 'bold',
     color:'#154c79',
     textTransform: 'uppercase',
   },
   smallerText: {
-    fontSize: 16,
+    fontSize: 18,
     borderBottomColor: '#154c79',
     borderBottomWidth: 1,
     backgroundColor: '#f2f7ff',

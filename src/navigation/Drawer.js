@@ -9,7 +9,9 @@ import SignOutScreen from "../screens/SignOutScreen";
 
 
 const Drawer = createDrawerNavigator();
-const DrawerScreen = () => {
+const DrawerScreen = ({route, navigation}) => {
+  const {email, birth, gender, username} = route.params;
+  console.log(email, birth, gender, username);
   return (
     <Drawer.Navigator screenOptions={{
       headerStyle: {

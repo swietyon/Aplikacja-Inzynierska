@@ -9,6 +9,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import MaskInput from 'react-native-mask-input';
 import Icon from 'react-native-vector-icons/Ionicons';
 import RadioButton from '../components/RadioButton';
+import ResolveAuth from '../components/ResolveAuth';
 
 
 const SignUpScreen = ( {navigation} ) => {
@@ -73,7 +74,9 @@ const SignUpScreen = ( {navigation} ) => {
     console.log(gender);
         
         return (
+            
             <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
+                <ResolveAuth email={email} username={username} birth={birth} password={password} />
                 <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image 

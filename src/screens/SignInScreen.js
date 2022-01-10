@@ -2,9 +2,8 @@ import React from 'react';
 import { useContext, useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { NavigationEvents } from 'react-navigation';
+import ResolveAuth from '../components/ResolveAuth';
 
-import SignUpScreen from './SignUpScreen';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const SignInScreen = ({navigation}) => { 
@@ -12,9 +11,9 @@ const SignInScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {state, signin, clearErrorMessage} =  useContext(AuthContext);
-    
+
         return (
-            <View style={styles.container}>
+            <View style={styles.container}><ResolveAuth email={email} password={password} />
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 

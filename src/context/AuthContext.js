@@ -30,8 +30,8 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     // await AsyncStorage.setItem("userItem", response.data.user);
-    const user = response.data.user;
-    await AsyncStorage.setItem("user", JSON.stringify(user))
+    const user = JSON.stringify(response.data.user);
+    await AsyncStorage.setItem("user", user);
     dispatch({ type: "signup", payload: response.data.token });
     RootNavigation.navigate('DrawerScreen', user);
   }  
@@ -47,11 +47,10 @@ const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/signin", { email, password });
     await AsyncStorage.setItem("token", response.data.token);
-    
     // await AsyncStorage.setItem("userItem", response.data.user);
     dispatch({ type: "signin", payload: response.data.token });
-      const user = response.data.user;
-      await AsyncStorage.setItem("user", JSON.stringify(user))
+      const user = JSON.stringify(response.data.user);
+      await AsyncStorage.setItem("user", user)
       RootNavigation.navigate('DrawerScreen', user);
   } 
   catch (err) {

@@ -20,11 +20,12 @@ const authReducer = (state, action) => {
   }
 };
 
-const tryLocalSignin = (dispatch) => async () => {
+const tryLocalSignin = (dispatch) => async ({email, username, birth, gender, password}) => {
   const token = await AsyncStorage.getItem("token");
+  console.log("email to:");
   if (token) {
     dispatch({ type: "signin", payload: token });
-    RootNavigation.navigate("DrawerScreen", token);
+    RootNavigation.navigate("DrawerScreen", token, email, username, birth, gender, password);
   } else {
     RootNavigation.navigate("AuthStackScreen");
   }
@@ -41,7 +42,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     dispatch({ type: "signup", payload: response.data.token });
     const user = response.data.user;
     console.log(user);
-    RootNavigation.navigate('DrawerScreen', response.data.token);
+    RootNavigation.navigate('DrawerScreen', user);
   }  
   catch (err) {
       dispatch({

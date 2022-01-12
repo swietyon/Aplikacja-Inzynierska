@@ -17,10 +17,10 @@ const SignInScreen = ({navigation}) => {
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
-                        style={{width: 350, height: 150, marginBottom: 30}} 
+                        style={{width: 250, height: 120, marginBottom: 30}} 
                     />
                 </View>
-                <Text>E-mail:</Text>
+                <Text style={s.authTitlesStyle}>E-mail:</Text>
                     <TextInput 
                         style={s.inputStyle} 
                         autoFocus={true}
@@ -30,7 +30,7 @@ const SignInScreen = ({navigation}) => {
                         value={email}
                         onChangeText={setEmail}
                     />
-                <Text>Hasło:</Text>
+                <Text style={s.authTitlesStyle}>Hasło:</Text>
                     <TextInput 
                         style={s.inputStyle}
                         secureTextEntry 
@@ -57,7 +57,7 @@ const SignInScreen = ({navigation}) => {
                             clearErrorMessage();
                             }}
                          >
-                        <Text style={{color:'#154c79'}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
+                        <Text style={{color:'#154c79',fontSize:17}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               
                 </View>
         );
@@ -70,11 +70,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingTop: 50,
         paddingHorizontal: 12,
-        alignItems: 'center',
+        justifyContent: 'center', //Centered horizontally
+        alignItems: 'center', //Centered vertically
+        
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 10
+        marginTop: -90
     },
     inputStyle: {
         marginBottom:10,

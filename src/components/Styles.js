@@ -28,7 +28,7 @@ module.exports = StyleSheet.create({
         marginBottom:10,
         backgroundColor:'#F2F2F2', 
         width: '100%',
-        height:40, 
+        height:35, 
         borderColor:'white', 
         borderWidth: 2, 
         borderRadius:10,
@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     },
     textStyle2: {
         fontSize: 17,
-        color: '#fff',
+        color: '#000',
         fontWeight: 'bold',
         alignSelf: 'center',
         marginTop:10
@@ -94,5 +94,10 @@ module.exports = StyleSheet.create({
        width:"100%",
        height:200
     },
+    authTitlesStyle: {
+        fontSize:16,
+        marginBottom:4,
+        color:'#154c79'
+    }
     
 });

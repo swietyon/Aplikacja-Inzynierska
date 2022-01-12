@@ -2,7 +2,12 @@ import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const AccountScreen = () => {
+const AccountScreen = (params) => {
+  console.log(params.route.params.params.email);
+  const email = params.route.params.params.email;
+  const birth = params.route.params.params.birth;
+  const username = params.route.params.params.username;
+  const password = params.route.params.params.password;
     const s = require('../components/Styles'); 
     return (
       <ScrollView>
@@ -11,10 +16,13 @@ const AccountScreen = () => {
           </View>
           <View style={styles.bot}>
             <View style={styles.botContainer}>
-              <Text style={styles.titleStyle}>Email</Text>
+              <Text style={styles.titleStyle}></Text>
               <View style={styles.element}>
                 <TouchableOpacity>
-                  <Text style={styles.textStyle}>Element</Text>
+                  <Text style={styles.textStyle}>{email}</Text>
+                  <Text style={styles.textStyle}>{username}</Text>
+                  <Text style={styles.textStyle}>{birth}</Text>
+                  <Text style={styles.textStyle}>{password}</Text>
                 </TouchableOpacity>
               </View>
             </View>

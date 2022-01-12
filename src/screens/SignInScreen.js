@@ -53,7 +53,7 @@ const SignInScreen = ({navigation}) => {
                     <TouchableOpacity
                         title="Nie masz konta? Zarejestruj się" 
                         onPress={() => {
-                            navigation.goBack();
+                            navigation.navigate('SignUpScreen');
                             clearErrorMessage();
                             }}
                          >

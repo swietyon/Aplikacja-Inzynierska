@@ -12,7 +12,8 @@ import * as RootNavigation from '../navigation/RootNavigation';
 const Drawer = createDrawerNavigator();
 
 const DrawerScreen = ({route, navigation}) => {
-  const {email, birth, gender, username} = route.params;
+  const {email, user, birth, gender, username} = JSON.parse(route.params);
+
   return (
     <Drawer.Navigator 
       screenOptions={{
@@ -35,10 +36,11 @@ const DrawerScreen = ({route, navigation}) => {
       component={BottomTabs} 
       screenOptions={{
         backgroundColor: "#154c79",
+        color:"red",
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
        }} />
-    <Drawer.Screen name="Profil" initialParams={{ params: route.params }} component={AccountScreen}/>
+    <Drawer.Screen name="Profil" initialParams={{ params: JSON.parse(route.params) }} component={AccountScreen}/>
     <Drawer.Screen name="Postępy" component={ProgressScreen} />
     <Drawer.Screen name="Regulamin" component={RulesScreen} />
     <Drawer.Screen name="Wyloguj się" component={SignOutScreen} />

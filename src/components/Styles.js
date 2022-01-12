@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     },
     textStyle2: {
         fontSize: 17,
-        color: '#000',
+        color: '#fff',
         fontWeight: 'bold',
         alignSelf: 'center',
         marginTop:10

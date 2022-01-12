@@ -3,14 +3,19 @@ import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import * as RootNavigation from "../navigation/RootNavigation";
 
+
 const authReducer = (state, action) => {
   switch (action.type) {
     case "add_error":
       return { ...state, errorMessage: action.payload };
     case "signin":
-      return { token: action.payload, errorMessage: ""};
+      return { 
+        user: action.payload,  
+        token: action.payload, errorMessage: ""};
     case "signup":
-      return { token: action.payload, errorMessage: ""};
+      return { 
+        user: action.payload, 
+        token: action.payload, errorMessage: ""};
     case "clear_error_message":
       return { ...state, errorMessage: "" };
     case "signout":
@@ -20,28 +25,14 @@ const authReducer = (state, action) => {
   }
 };
 
-const tryLocalSignin = (dispatch) => async ({email, username, birth, gender, password}) => {
-  const token = await AsyncStorage.getItem("token");
-  console.log("email to:");
-  if (token) {
-    dispatch({ type: "signin", payload: token });
-    RootNavigation.navigate("DrawerScreen", token, email, username, birth, gender, password);
-  } else {
-    RootNavigation.navigate("AuthStackScreen");
-  }
-};
-
-const clearErrorMessage = (dispatch) => () => {
-  dispatch({ type: "clear_error_message" });
-};
-
 const signup = (dispatch) => async ({ email, username, birth, gender, password}) => {
   try {
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
-    dispatch({ type: "signup", payload: response.data.token });
+    // await AsyncStorage.setItem("userItem", response.data.user);
     const user = response.data.user;
-    console.log(user);
+    await AsyncStorage.setItem("user", JSON.stringify(user))
+    dispatch({ type: "signup", payload: response.data.token });
     RootNavigation.navigate('DrawerScreen', user);
   }  
   catch (err) {
@@ -50,16 +41,18 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
         payload: "Wystąpił błąd przy rejestracji. Spróbuj zmienić adres email",
       });
   }
-  
 };
 
 const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/signin", { email, password });
     await AsyncStorage.setItem("token", response.data.token);
+    
+    // await AsyncStorage.setItem("userItem", response.data.user);
     dispatch({ type: "signin", payload: response.data.token });
       const user = response.data.user;
-      console.log(user);
+      console.log(JSON.stringify(user));
+      await AsyncStorage.setItem("user", JSON.stringify(user))
       RootNavigation.navigate('DrawerScreen', user);
   } 
   catch (err) {
@@ -69,6 +62,22 @@ const signin = (dispatch) => async ({ email, password }) => {
       payload: "Wystąpił błąd przy logowaniu",
     });
   }
+};
+
+const tryLocalSignin = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem("token");
+  const user = await AsyncStorage.getItem("user");
+  console.log(user);
+  if (token) {
+    dispatch({ type: "signin", payload: token });
+    RootNavigation.navigate("DrawerScreen", user);
+  } else {
+    RootNavigation.navigate("AuthStackScreen");
+  }
+};
+
+const clearErrorMessage = (dispatch) => () => {
+  dispatch({ type: "clear_error_message" });
 };
 
 const signout = (dispatch) => async () => {

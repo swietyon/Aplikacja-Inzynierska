@@ -23,12 +23,6 @@ const DiseasesScreen = ( { navigation }) => {
     }, []);
         return (  
             <>  
-                <View>
-                    <TouchableOpacity>
-                        <Text style={s.textStyle2}>Dzien dolkdsaddddfaslflksafslkflakbry</Text>
-                    </TouchableOpacity>  
-                </View>
-
                 <FlatList 
                 contentContainerStyle={{
                     paddingBottom:"20%",

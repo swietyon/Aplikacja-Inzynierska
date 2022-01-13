@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 
 
 const excerciseSchema = new mongoose.Schema({
-    excerciseName: {
+    excerciseTitle: {
         type: String,
-        required: true
+    },
+    excDesc: {
+        type: String,
+    },
+    videoLink: {
+        type: String,
     },
     diseaseId: {
         type: mongoose.Schema.Types.ObjectId,

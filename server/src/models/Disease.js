@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
 const DiseaseSchema = new mongoose.Schema({
-    diseaseName: {
+    diseaseTitle: {
         type: String,
         default: ''
     },
@@ -11,7 +11,9 @@ const DiseaseSchema = new mongoose.Schema({
         type: String,
         default:''
     },
-
+    imgLink: {
+        type: String
+    }
 });
 
 

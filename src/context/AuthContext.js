@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import * as RootNavigation from "../navigation/RootNavigation";
+import { Alert } from "react-native";
 
 
 const authReducer = (state, action) => {
@@ -34,6 +35,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
     await AsyncStorage.setItem("user", user);
     dispatch({ type: "signup", payload: response.data.token });
     RootNavigation.navigate('DrawerScreen', user);
+    alert();
   }  
   catch (err) {
       dispatch({
@@ -83,6 +85,20 @@ const signout = (dispatch) => async () => {
   RootNavigation.navigate("AuthStackScreen");
 };
 
+const alert = () => {
+  Alert.alert(
+    "UP MedApp",
+    "My Alert Msg",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("okey"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+}
 
 export const { Provider, Context } = createDataContext(
   authReducer,

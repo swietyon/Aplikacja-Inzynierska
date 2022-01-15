@@ -1,22 +1,15 @@
 const mongoose = require('mongoose');
 
-
-
 const DiseaseSchema = new mongoose.Schema({
-    diseaseTitle: {
+    title: {
         type: String,
-        default: ''
     },
     desc: {
         type: String,
-        default:''
     },
     imgLink: {
         type: String
     }
 });
-
-
-
 
 mongoose.model('Disease', DiseaseSchema);

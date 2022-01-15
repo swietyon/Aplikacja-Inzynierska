@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
-
 const excerciseSchema = new mongoose.Schema({
-    excerciseTitle: {
+    title: {
         type: String,
     },
     excDesc: {
@@ -16,7 +15,5 @@ const excerciseSchema = new mongoose.Schema({
         ref: 'Disease'
     }
 });
-
-
 
 mongoose.model('Excercise', excerciseSchema);

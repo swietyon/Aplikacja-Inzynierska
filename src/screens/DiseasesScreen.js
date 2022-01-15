@@ -3,6 +3,7 @@ import { useState, useEffect} from 'react';
 import { Image, StyleSheet, View, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const DiseasesScreen = ( { navigation }) => {
     const s = require('../components/Styles');
@@ -23,11 +24,16 @@ const DiseasesScreen = ( { navigation }) => {
     }, []);
         return (  
             <>  
+            <LinearGradient
+                colors={['white','#154c79']}
+                style={s.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
                 <FlatList 
                 contentContainerStyle={{
                     paddingBottom:"20%",
                     alignItems: 'center',
-                    backgroundColor:'#fff'
                 }}
                 data={rehabs}
                 renderItem={({item}) => (
@@ -35,19 +41,17 @@ const DiseasesScreen = ( { navigation }) => {
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 
-                                <View style={s.BottomPart}>
                                     <Image 
                                     style={s.img} 
                                     source={item.imgLink} 
                                     />
-                                </View>  
                             </View>
-                            
                         </View>  
                     </TouchableOpacity>    
                 )}        
                 > 
                 </FlatList>
+                </LinearGradient>
                 </> 
         );
 };

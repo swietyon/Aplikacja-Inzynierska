@@ -3,6 +3,7 @@ import { useContext, useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import ResolveAuth from '../components/ResolveAuth';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { Context as AuthContext } from '../context/AuthContext';
 
@@ -13,7 +14,13 @@ const SignInScreen = ({navigation}) => {
     const {state, signin, clearErrorMessage} =  useContext(AuthContext);
 
         return (
-            <View style={styles.container}><ResolveAuth email={email} password={password} />
+            <LinearGradient
+                colors={['#154c79', 'white']}
+                style={s.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
+                <ResolveAuth email={email} password={password} />
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
@@ -59,35 +66,15 @@ const SignInScreen = ({navigation}) => {
                          >
                         <Text style={{color:'#154c79',fontSize:17}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               
-                </View>
+                </LinearGradient>
         );
 };
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor: 'white',
-        paddingTop: 50,
-        paddingHorizontal: 12,
-        justifyContent: 'center', //Centered horizontally
-        alignItems: 'center', //Centered vertically
-        
-    },
     logoContainer: {
         alignItems: 'center',
         marginTop: -90
-    },
-    inputStyle: {
-        marginBottom:10,
-        backgroundColor:'#F2F2F2', 
-        width: '100%',
-        height:50, 
-        borderColor:'white', 
-        borderWidth: 2, 
-        borderRadius:10,
-        fontSize: 20,
-        textAlign: 'center'
     },
     touchableOpacityStyle: {
         width: '80%',

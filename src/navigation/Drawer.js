@@ -6,8 +6,6 @@ import AccountScreen from "../screens/AccountScreen";
 import ProgressScreen from "../screens/ProgressScreen";
 import RulesScreen from "../screens/RulesScreen";
 import SignOutScreen from "../screens/SignOutScreen";
-import * as RootNavigation from '../navigation/RootNavigation';
-
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +20,7 @@ const DrawerScreen = ({route, navigation}) => {
           backgroundColor: "#154c79",
           borderBottomLeftRadius: 20,
           borderBottomRightRadius: 20,
-          height:80
+          height:80,
         },
         headerTintColor: '#fff',
         headerTitleStyle: {

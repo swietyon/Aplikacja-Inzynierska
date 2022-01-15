@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -48,7 +49,13 @@ const RulesScreen = ({navigation}) => {
     }
   }
       return (
-        <View style={styles.container}>
+        <>
+        <LinearGradient
+                colors={['white','#154c79']}
+                style={styles.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+        >
           <FlatList 
             style={styles.container}
             data={rules}
@@ -69,14 +76,12 @@ const RulesScreen = ({navigation}) => {
             )
           }
           /> 
-          
-        </View>
-        
+          </LinearGradient>
+          </>       
 )};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'white',
     paddingBottom:40
   },
   elements: {
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
   },
   element: {
     borderBottomWidth:1,
-    opacity:0.7,
+    opacity:0.9,
     borderBottomColor:'#154c79',
   },
   textStyle: {
@@ -98,7 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderBottomColor: '#154c79',
     borderBottomWidth: 1,
-    backgroundColor: '#f2f7ff',
     color: '#082c66'
   }
 })

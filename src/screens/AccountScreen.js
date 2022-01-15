@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const AccountScreen = (params) => {
   const email = params.route.params.params.email;
@@ -14,7 +15,12 @@ const AccountScreen = (params) => {
         <View>
           <View style={styles.top}>
           </View>
-          <View style={styles.bot}>
+          <LinearGradient
+                colors={['#154c79', 'white']}
+                style={styles.bot}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
             <View style={styles.botContainer}>
               <Text style={styles.titleStyle}></Text>
                   <Text style={styles.textStyle}>{username}</Text>
@@ -22,7 +28,7 @@ const AccountScreen = (params) => {
                   <Text style={styles.textStyle}>{birth}</Text>
                   <Text style={styles.textStyle}>{password}</Text>
             </View>
-          </View>
+          </LinearGradient>
           <Image 
             style={styles.image} 
             source={require("../img/IMAG0332.jpg")} 
@@ -38,9 +44,7 @@ const styles = StyleSheet.create({
       height: 130
     },
     bot: {
-      backgroundColor: '#154c79',
       height:700,
-      opacity:0.9
     },
     image: {
       position: 'absolute',

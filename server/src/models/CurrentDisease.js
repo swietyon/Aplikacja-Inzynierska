@@ -11,4 +11,6 @@ const currendDiseasesSchema = new mongoose.Schema({
     }
 });
 
+// populate
+
 mongoose.model('CurrentDisease', currendDiseasesSchema);

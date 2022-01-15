@@ -5,6 +5,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { StyleSheet, View, Image, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Context as AuthContext } from '../context/AuthContext';
+import { LinearGradient } from 'expo-linear-gradient';
 import MaskInput from 'react-native-mask-input';
 import ResolveAuth from '../components/ResolveAuth';
 
@@ -85,10 +86,16 @@ const SignUpScreen = ( {navigation} ) => {
         }
     }
 
-        return ( 
+        return (
+        <>
+            <LinearGradient
+                colors={['#154c79', 'white']}
+                style={s.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
             <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
                 <ResolveAuth email={email} username={username} birth={birth} password={password} />
-                <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
@@ -215,22 +222,15 @@ const SignUpScreen = ( {navigation} ) => {
                         clearErrorMessage();
                         }}
                 >
-                        <Text style={{color:'#154c79', fontSize:17}}>Posiadasz już konto? Zaloguj się!</Text>
-                </TouchableOpacity>  
-                </View>    
+                        <Text style={{color:'#154c79', fontSize:17, textAlign:'center'}}>Posiadasz już konto? Zaloguj się!</Text>
+                </TouchableOpacity>    
             </ScrollView>
+            </LinearGradient>
+            </>
         );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor: 'white',
-        paddingHorizontal: 12,
-        paddingBottom:50,
-        justifyContent: 'center', //Centered horizontally
-        alignItems: 'center', //Centered vertically
-    },
     logoContainer: {
         alignItems: 'center',
         marginTop: 30

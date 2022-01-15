@@ -6,7 +6,17 @@ module.exports = StyleSheet.create({
        alignItems: 'center', //Centered vertically
        flex:1
     },
-
+    container: {
+        flex:1,
+        backgroundColor: 'white',
+        paddingHorizontal: 12,
+        margin:-50,
+        paddingTop:50,
+        paddingLeft:30,
+        paddingRight:30,
+        justifyContent: 'center', //Centered horizontally
+        alignItems: 'center', //Centered vertically
+    },
     // SPACESNIFFER
     errorMessage: {
         marginTop:-5,
@@ -28,7 +38,7 @@ module.exports = StyleSheet.create({
      },
      inputStyle: {
         marginBottom:10,
-        backgroundColor:'#F2F2F2', 
+        backgroundColor:'#F0F0F0', 
         width: '100%',
         height:35, 
         borderColor:'white', 
@@ -99,7 +109,8 @@ module.exports = StyleSheet.create({
     authTitlesStyle: {
         fontSize:16,
         marginBottom:4,
-        color:'#154c79'
+        color:'#154c79',
+        textAlign: 'center'
     }
     
 });

@@ -1,4 +1,8 @@
 require('./models/User');
+require('./models/Disease');
+require('./models/Excercise');
+require('./models/Progress');
+require('./models/CurrentDisease');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');

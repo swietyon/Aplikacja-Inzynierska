@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-const DiseaseSchema = new mongoose.Schema({
+const DiseasesSchema = new mongoose.Schema({
     title: {
         type: String,
+        unique: true
     },
     desc: {
         type: String,
@@ -12,4 +13,22 @@ const DiseaseSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Disease', DiseaseSchema);
+const Disease = mongoose.model('Disease', DiseasesSchema);
+
+const createAndSaveDisease = () => {
+    let shoulder = new Disease({
+    title: "Rehabilitacja ramienia", 
+    desc: "Opis rehabilitacji ramienia", 
+    imgLink: "require('../img/shoulder.png')"
+    });
+    shoulder.save((error, data) => {
+        if(error){
+            console.log("Rekord już istnieje");
+        }
+        else{
+            console.log(data);
+        }
+})
+}
+
+createAndSaveDisease();

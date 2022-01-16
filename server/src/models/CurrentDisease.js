@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const currendDiseasesSchema = new mongoose.Schema({
+const CurrentDiseasesSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -13,4 +13,4 @@ const currendDiseasesSchema = new mongoose.Schema({
 
 // populate
 
-mongoose.model('CurrentDisease', currendDiseasesSchema);
+const CurrentDisease = mongoose.model('CurrentDisease', CurrentDiseasesSchema);

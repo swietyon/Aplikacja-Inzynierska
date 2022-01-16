@@ -16,4 +16,4 @@ const ProgressSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Progress', ProgressSchema);
+const Progress = mongoose.model('Progress', ProgressSchema);

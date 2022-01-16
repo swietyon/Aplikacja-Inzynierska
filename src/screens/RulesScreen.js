@@ -20,7 +20,7 @@ const RulesScreen = ({navigation}) => {
     { title: 'Zasada3', icon: 9, imgLink: require('../img/shoulder.png'), key: '9' }, 
     { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '10' },
     { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '11' },
-    { title: 'Twórcy', icon: 9, imgLink: require('../img/ankle.png'), key: '12' }
+    { title: 'Twórcy', icon: 9, imgLink: require('../img/knee.png'), key: '12' }
   ])
 
   const [rules, setRules] = useState([]);

@@ -12,6 +12,7 @@ module.exports = StyleSheet.create({
         paddingHorizontal: 12,
         margin:-50,
         paddingTop:50,
+        paddingBottom:35,
         paddingLeft:30,
         paddingRight:30,
         justifyContent: 'center', //Centered horizontally

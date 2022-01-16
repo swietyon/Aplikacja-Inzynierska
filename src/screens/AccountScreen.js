@@ -8,12 +8,12 @@ const AccountScreen = (params) => {
   const birth = params.route.params.params.birth.substr(0,10);
   const username = params.route.params.params.username;
   const password = params.route.params.params.gender;
-  console.log(birth);
     const s = require('../components/Styles'); 
     return (
       <ScrollView>
         <View>
           <View style={styles.top}>
+            <Text style={styles.titleStyle}></Text>
           </View>
           <LinearGradient
                 colors={['#154c79', 'white']}
@@ -22,7 +22,6 @@ const AccountScreen = (params) => {
                 end={{ x: 1, y: 1 }}
             >
             <View style={styles.botContainer}>
-              <Text style={styles.titleStyle}></Text>
                   <Text style={styles.textStyle}>{username}</Text>
                   <Text style={styles.textStyle}>{email}</Text>
                   <Text style={styles.textStyle}>{birth}</Text>
@@ -45,6 +44,8 @@ const styles = StyleSheet.create({
     },
     bot: {
       height:700,
+      borderTopLeftRadius:20,
+      borderTopRightRadius:20
     },
     image: {
       position: 'absolute',
@@ -53,12 +54,12 @@ const styles = StyleSheet.create({
       height: 140,
       alignSelf: 'center',
       borderRadius: 70,
-      borderWidth: 3,
+      borderWidth: 2,
       borderColor: '#154c79'
     },
     botContainer: {
       marginTop: 90,
-      height:500
+      height:500,
     },
     element: {
       margin:20,
@@ -71,16 +72,17 @@ const styles = StyleSheet.create({
       color: 'white',
       fontWeight: 'bold',
       alignSelf: 'center',
-      marginTop:6
-    },
-    titleStyle:{
-      fontSize: 25,
-      color: '#fff',
-      fontWeight: 'bold',
-      alignSelf: 'center',
-      marginBottom: -15
+      textAlign:'center',
+      marginTop:6,
+      borderWidth:1,
+      borderRadius:15,
+      padding:10,
+      width:320,
+      height:50,
+      backgroundColor:"#fefefe",
+      color:"#154c79",
+      borderColor: "#154c79"
     }
-
 });
 
 export default AccountScreen;

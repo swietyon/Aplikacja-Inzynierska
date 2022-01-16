@@ -13,10 +13,10 @@ const SignInScreen = ({navigation}) => {
     const [password, setPassword] = useState('');
     const {state, signin, clearErrorMessage} =  useContext(AuthContext);
 
-        return (
+        return (<>
             <LinearGradient
                 colors={['#154c79', 'white']}
-                style={s.container}
+                style={styles.container}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             >
@@ -67,11 +67,21 @@ const SignInScreen = ({navigation}) => {
                         <Text style={{color:'#154c79',fontSize:17}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
                     </TouchableOpacity>               
                 </LinearGradient>
+                </>
         );
 };
 
 
 const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: 'white',
+        paddingTop:50,
+        paddingRight:30,
+        paddingLeft:30,
+        justifyContent: 'center', //Centered horizontally
+        alignItems: 'center', //Centered vertically
+    },
     logoContainer: {
         alignItems: 'center',
         marginTop: -90

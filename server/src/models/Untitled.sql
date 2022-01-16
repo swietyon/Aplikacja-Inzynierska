@@ -17,10 +17,8 @@ CREATE TABLE [Disease] (
 GO
 
 CREATE TABLE [CurrentDisease] (
-  [id] int PRIMARY KEY IDENTITY(1, 1),
   [user_id] int,
-  [disease_id] int,
-  [progress_id] int
+  [disease_id] int
 )
 GO
 
@@ -45,7 +43,7 @@ GO
 ALTER TABLE [CurrentDisease] ADD FOREIGN KEY ([user_id]) REFERENCES [User] ([id])
 GO
 
-ALTER TABLE [Disease] ADD FOREIGN KEY ([id]) REFERENCES [CurrentDisease] ([user_id])
+ALTER TABLE [CurrentDisease] ADD FOREIGN KEY ([disease_id]) REFERENCES [Disease] ([id])
 GO
 
 ALTER TABLE [Excercise] ADD FOREIGN KEY ([disease_id]) REFERENCES [Disease] ([id])

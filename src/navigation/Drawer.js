@@ -5,7 +5,6 @@ import { BottomTabs } from "./BottomTabs";
 import AccountScreen from "../screens/AccountScreen";
 import ProgressScreen from "../screens/ProgressScreen";
 import RulesScreen from "../screens/RulesScreen";
-import SignOutScreen from "../screens/SignOutScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,7 +40,6 @@ const DrawerScreen = ({route, navigation}) => {
     <Drawer.Screen name="Profil" initialParams={{ params: JSON.parse(route.params) }} component={AccountScreen}/>
     <Drawer.Screen name="Postępy" component={ProgressScreen} />
     <Drawer.Screen name="Regulamin" component={RulesScreen} />
-    <Drawer.Screen name="Wyloguj się" component={SignOutScreen} />
     </Drawer.Navigator>
     
   );

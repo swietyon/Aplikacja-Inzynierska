@@ -4,7 +4,7 @@ import { Text, View, Button, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const SignOutScreen = ( {navigation} ) => {
-    const s = require('../components/Styles'); 
+    const s = require('./Styles'); 
     const {state, signout} =  useContext(AuthContext);
         return (
             <View style={s.Images}>

@@ -12,8 +12,7 @@ const DiseasesScreen = ( { navigation }) => {
         { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
         { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
         { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-        { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
-        { title: 'Rehabilitacja stawu skokowego', icon: 9, imgLink: require('../img/ankle.png'), key: '6' }
+        { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' }
     ])
 
     const [rehabs, setRehabs] = useState([]);
@@ -31,6 +30,7 @@ const DiseasesScreen = ( { navigation }) => {
                 end={{ x: 1, y: 1 }}
             >
                 <FlatList 
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                     paddingBottom:"20%",
                     alignItems: 'center',

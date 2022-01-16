@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import SignOutScreen from '../components/SignOutScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const AccountScreen = (params) => {
@@ -10,7 +11,6 @@ const AccountScreen = (params) => {
   const password = params.route.params.params.gender;
     const s = require('../components/Styles'); 
     return (
-      <ScrollView>
         <View>
           <View style={styles.top}>
             <Text style={styles.titleStyle}></Text>
@@ -26,7 +26,7 @@ const AccountScreen = (params) => {
                   <Text style={styles.textStyle}>{email}</Text>
                   <Text style={styles.textStyle}>{birth}</Text>
                   <Text style={styles.textStyle}>{password}</Text>
-            </View>
+            </View><SignOutScreen/>
           </LinearGradient>
           <Image 
             style={styles.image} 
@@ -34,22 +34,21 @@ const AccountScreen = (params) => {
           />
           
         </View> 
-      </ScrollView>
     );
 };
 const styles = StyleSheet.create({
     top:{
       backgroundColor: "#fff",
-      height: 130
+      height: 100
     },
     bot: {
-      height:700,
+      height:"100%",
       borderTopLeftRadius:20,
       borderTopRightRadius:20
     },
     image: {
       position: 'absolute',
-      marginTop:60,
+      marginTop:30,
       width: 140,
       height: 140,
       alignSelf: 'center',
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     },
     botContainer: {
       marginTop: 90,
-      height:500,
+      height:10,
     },
     element: {
       margin:20,
@@ -73,15 +72,15 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       alignSelf: 'center',
       textAlign:'center',
-      marginTop:6,
-      borderWidth:1,
+      marginTop:8,
+      borderWidth:0.5,
       borderRadius:15,
-      padding:10,
-      width:320,
-      height:50,
-      backgroundColor:"#fefefe",
-      color:"#154c79",
-      borderColor: "#154c79"
+      padding:7,
+      width:300,
+      height:40,
+      color:"#fff",
+      borderColor: "#fff",
+      opacity:0.8
     }
 });
 

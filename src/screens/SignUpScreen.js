@@ -94,7 +94,9 @@ const SignUpScreen = ( {navigation} ) => {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             >
-            <ScrollView  contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView  
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ flexGrow: 1 }}>
                 <ResolveAuth email={email} username={username} birth={birth} password={password} />
                 <View style={styles.logoContainer}>
                     <Image 

@@ -61,7 +61,6 @@ module.exports = StyleSheet.create({
         marginLeft:30,
         marginRight:30,
         borderRadius: 5,
-        borderColor: '#fff',
         alignSelf: 'center'
     },
     itemsInline:{

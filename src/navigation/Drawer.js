@@ -1,6 +1,6 @@
 import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Text , Image} from "react-native";
+import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
+import { Text , Image, View} from "react-native";
 import { BottomTabs } from "./BottomTabs";
 import AccountScreen from "../screens/AccountScreen";
 import ProgressScreen from "../screens/ProgressScreen";
@@ -11,6 +11,12 @@ const Drawer = createDrawerNavigator();
 
 const DrawerScreen = ({route, navigation}) => {
   const {email, user, birth, gender, username} = JSON.parse(route.params);
+  const profileInfo = {
+		firstName: 'Celsius',
+		lastName: 'W.',
+		imgSource: require('../img/knee.png')
+	}
+
 
   return (
     <Drawer.Navigator 
@@ -33,33 +39,31 @@ const DrawerScreen = ({route, navigation}) => {
           padding:2,
           borderRadius:10,
           fontSize: 18,
-          fontWeight:"bold"
-        },
-        drawerItemStyle:{
-          borderRadius:5,
+          fontWeight:"bold",
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold'
-        }
+        },
       }}
     >
 
     <Drawer.Screen name="Profile" initialParams={{ params: JSON.parse(route.params) }} component={AccountScreen}
     options={{
       drawerItemStyle:{
-        backgroundColor:"green",
-        height:130,
+        height:150,
+        paddingTop:14
       },
-      title: username,
+      title:username,
       drawerIcon: ({focused, size}) => (
          <MaterialCommunityIcons
-            name="home"
-            size={size}
+            style={{}}
+            name="account-circle"
+            size={100}
             color={focused ? 'green' : '#154c79'}
          />
       ),
-   }}/> 
+   }}/>
     <Drawer.Screen name="Home" component={BottomTabs}
     options={{
       drawerIcon: ({focused, size}) => (

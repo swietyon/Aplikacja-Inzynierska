@@ -26,7 +26,8 @@ const AccountScreen = (params) => {
                   <Text style={styles.textStyle}>{email}</Text>
                   <Text style={styles.textStyle}>{birth}</Text>
                   <Text style={styles.textStyle}>{password}</Text>
-            </View><SignOutScreen/>
+            </View>
+            <SignOutScreen/>
           </LinearGradient>
           <Image 
             style={styles.image} 
@@ -73,8 +74,7 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       textAlign:'center',
       marginTop:8,
-      borderWidth:0.5,
-      borderRadius:15,
+      borderBottomWidth:0.5,
       padding:7,
       width:300,
       height:40,

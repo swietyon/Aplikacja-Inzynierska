@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Text, View, Button, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const SignOutScreen = ( {navigation} ) => {

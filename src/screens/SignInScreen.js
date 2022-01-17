@@ -24,7 +24,7 @@ const SignInScreen = ({navigation}) => {
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
-                        style={{width: 250, height: 120, marginBottom: 30}} 
+                        style={{width: 300, height: 120, marginBottom: 20}} 
                     />
                 </View>
                 <Text style={s.authTitlesStyle}>E-mail:</Text>

@@ -99,7 +99,7 @@ const SignUpScreen = ( {navigation} ) => {
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 
-                        style={{width: 250, height: 120, marginBottom: 30}} 
+                        style={{width: 300, height: 120, marginBottom: 20}} 
                     />
                 </View>
 
@@ -161,9 +161,7 @@ const SignUpScreen = ( {navigation} ) => {
                         width: 130,
                         backgroundColor: '#fefefe',
                         margin:15,
-                        borderRadius: 15,
-                        borderColor: colorMan,
-                        borderWidth:1,
+                        borderRadius: 5,
                         alignSelf: 'center'
                     }} title="Go back" 
                     onPress={() => {onSubmitMan(gender)}}
@@ -185,9 +183,7 @@ const SignUpScreen = ( {navigation} ) => {
                         width: 130,
                         backgroundColor: '#fefefe',
                         margin:15,
-                        borderRadius: 15,
-                        borderColor: colorWoman,
-                        borderWidth:1,
+                        borderRadius: 5,
                         alignSelf: 'center'
                     }} 
                     title="Go back" 
@@ -252,17 +248,7 @@ const styles = StyleSheet.create({
     itemsInline:{
         alignSelf:'center',
         flexDirection: 'row',
-    },
-    touchableOpacityStyle: {
-        height: 45,
-        width: 130,
-        backgroundColor: '#fefefe',
-        margin:5,
-        borderRadius: 15,
-        borderColor: "yellow",
-        borderWidth:1,
-        alignSelf: 'center'
-    },
+    }
 });
 
 export default SignUpScreen;

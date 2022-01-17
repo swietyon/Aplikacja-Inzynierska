@@ -10,7 +10,7 @@ module.exports = StyleSheet.create({
         flex:1,
         backgroundColor: 'white',
         paddingHorizontal: 12,
-        margin:-50,
+        margin:-30,
         paddingTop:50,
         paddingBottom:50,
         paddingLeft:30,
@@ -22,9 +22,12 @@ module.exports = StyleSheet.create({
     errorMessage: {
         marginTop:-5,
         marginBottom:5,
-        fontSize:16,
+        fontSize:14,
         color:'red',
-        opacity:0.4
+        fontStyle:"italic",
+        opacity:0.5,
+
+        textAlign:"center"
     },
     Images: {
        justifyContent: 'center', //Centered horizontally
@@ -44,10 +47,10 @@ module.exports = StyleSheet.create({
         height:35, 
         borderColor:'white', 
         borderWidth: 2, 
-        borderRadius:10,
+        borderRadius:5,
         fontSize: 20,
         textAlign: 'center',
-        borderColor: '#154c79',
+        borderColor: '#fff',
         borderWidth:0.5
     },
     touchableOpacityStyle: {
@@ -57,7 +60,7 @@ module.exports = StyleSheet.create({
         margin:15,
         marginLeft:30,
         marginRight:30,
-        borderRadius: 10,
+        borderRadius: 5,
         borderColor: '#fff',
         alignSelf: 'center'
     },
@@ -110,8 +113,9 @@ module.exports = StyleSheet.create({
     authTitlesStyle: {
         fontSize:16,
         marginBottom:4,
-        color:'#154c79',
-        textAlign: 'center'
+        color:'#fff',
+        fontWeight:"bold",
+        textAlign: 'center',
     }
     
 });

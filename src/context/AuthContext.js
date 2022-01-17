@@ -67,8 +67,8 @@ const signin = (dispatch) => async ({ email, password }) => {
 const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem("token");
   const user = await AsyncStorage.getItem("user");
-  console.log(user);
-  if (token) {
+  if (token) { 
+    console.log("uzytkownik",user);
     dispatch({ type: "signin", payload: token });
     RootNavigation.navigate("DrawerScreen", user);
   } else {

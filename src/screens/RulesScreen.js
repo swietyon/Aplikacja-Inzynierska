@@ -86,9 +86,15 @@ const styles = StyleSheet.create({
   },
   element: {
     borderBottomWidth:2,
+    borderRightWidth:2,
+    borderLeftWidth:2,
     opacity:0.9,
     borderBottomColor:'#154c79',
-    backgroundColor:"#fff"
+    borderRightColor:'#154c79',
+    borderLeftColor:'#154c79',
+    backgroundColor:"#fff",
+    borderBottomRightRadius:10,
+    borderBottomLeftRadius:10
   },
   textStyle: {
     margin:25,
@@ -102,8 +108,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     backgroundColor:'#154c79',
     padding:8,
-    borderBottomRightRadius:10,
-    borderBottomLeftRadius:10,
+    borderRadius:10
   },
 })
 

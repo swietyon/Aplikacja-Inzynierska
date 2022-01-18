@@ -84,6 +84,13 @@ module.exports = StyleSheet.create({
         alignSelf: 'center',
         marginTop:10
     },
+    arrows: {
+        fontSize: 40,
+        color: '#fff',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        marginTop:4
+    },
     Element: {
         width: 300,
         height: 150,

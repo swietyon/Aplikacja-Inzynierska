@@ -3,10 +3,8 @@ import React from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Slider from '@react-native-community/slider';
-import { Icon } from 'react-native-vector-icons';
 
-const ProgressComponent = (props) => {
-    const s = require('../components/Styles'); 
+const ProgressComponent = () => {
     const [range, setRange] = useState(5)
     const [sliding, setSliding] = useState("Inactive");
     return (

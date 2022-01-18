@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState , useEffect} from 'react';
-import { Text, View, Button , FlatList, StyleSheet} from 'react-native';
+import { Text, View , FlatList, StyleSheet} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

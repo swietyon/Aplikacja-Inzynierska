@@ -1,9 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { Animated, Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
+import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { LinearGradient } from 'expo-linear-gradient';
-
 
 
 const RulesScreen = ({navigation}) => {  

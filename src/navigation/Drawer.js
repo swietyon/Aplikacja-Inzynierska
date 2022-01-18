@@ -20,6 +20,7 @@ const DrawerScreen = ({route, navigation}) => {
 
   return (
     <Drawer.Navigator 
+    initialRouteName="Home"
       screenOptions={{
         headerStyle: {
           backgroundColor: "#154c79",
@@ -50,6 +51,7 @@ const DrawerScreen = ({route, navigation}) => {
 
     <Drawer.Screen name="Profile" initialParams={{ params: JSON.parse(route.params) }} component={AccountScreen}
     options={{
+      swipeEnabled: false,
       drawerItemStyle:{
         height:150,
         paddingTop:14

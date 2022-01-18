@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
+import { Animated, Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -48,35 +48,30 @@ const RulesScreen = ({navigation}) => {
       return(i);
     }
   }
+
+
       return (
         <>
-        <LinearGradient
-                colors={['white','#154c79']}
-                style={styles.container}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-        >
           <FlatList 
             style={styles.container}
             data={rules}
             renderItem={({item}) => (
-              <TouchableOpacity onPress={() => {myfunction(item.key)}}>
+              
                 <View style={styles.elements}>
+                  <TouchableOpacity onPress={() => {myfunction(item.key)}}>
                   <View style={styles.element}>
                     <Text style={styles.textStyle}>{item.title}</Text>
-                  </View>
-                    <View>
-                      {((i == '1') && item.key == helper) ?
-                      <Text style={styles.smallerText}>{item.icon}</Text>:
-                      null}
                     </View>
-     
+                  </TouchableOpacity>
+                  {((i == '1') && item.key == helper) ? 
+                        <Text style={styles.smallerText}>{item.icon}</Text>
+                      :
+                      null}
                 </View>
-              </TouchableOpacity>
+              
             )
           }
           /> 
-          </LinearGradient>
           </>       
 )};
 
@@ -87,24 +82,29 @@ const styles = StyleSheet.create({
   elements: {
     width:"95%",
     marginLeft:10,
+    borderRadius:15
   },
   element: {
-    borderBottomWidth:1,
+    borderBottomWidth:2,
     opacity:0.9,
     borderBottomColor:'#154c79',
+    backgroundColor:"#fff"
   },
   textStyle: {
     margin:25,
     fontSize:20,
     color:'#154c79',
     textTransform: 'uppercase',
+    fontWeight:"bold"
   },
   smallerText: {
     fontSize: 18,
-    borderBottomColor: '#154c79',
-    borderBottomWidth: 1,
-    color: '#082c66'
-  }
+    color: '#fff',
+    backgroundColor:'#154c79',
+    padding:8,
+    borderBottomRightRadius:10,
+    borderBottomLeftRadius:10,
+  },
 })
 
 export default RulesScreen;

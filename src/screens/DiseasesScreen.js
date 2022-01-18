@@ -8,11 +8,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 const DiseasesScreen = ( { navigation }) => {
     const s = require('../components/Styles');
     const data = ([
-        { title: 'Rehabilitacja kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
-        { title: 'Rehabilitacja pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
-        { title: 'Rehabilitacja ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
-        { title: 'Rehabilitacja dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-        { title: 'Rehabilitacja górnej partii pleców', icon: 1, imgLink: require('../img/knee.png'), key: '5' }
+        { title: 'Wzmocnienie kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
+        { title: 'Wzmocnienie pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
+        { title: 'Wzmocnienie ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
+        { title: 'Wzmocnienie dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
+        { title: 'Wzmocnienie górnej partii pleców', icon: 1, imgLink: require('../img/upperback.png'), key: '5' }
     ])
 
     const [rehabs, setRehabs] = useState([]);

@@ -16,16 +16,16 @@ const AccountScreen = (params) => {
             <Text style={styles.titleStyle}></Text>
           </View>
           <LinearGradient
-                colors={['#154c79', 'white']}
+                colors={['#154c79', 'black']}
                 style={styles.bot}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             >
             <View style={styles.botContainer}>
-                  <Text style={styles.textStyle}>{username}</Text>
-                  <Text style={styles.textStyle}>{email}</Text>
-                  <Text style={styles.textStyle}>{birth}</Text>
-                  <Text style={styles.textStyle}>{password}</Text>
+              <Text style={styles.textStyle}>{username}</Text>
+              <Text style={styles.textStyle}>{email}</Text>
+              <Text style={styles.textStyle}>{birth}</Text>
+              <Text style={styles.textStyle}>{password}</Text>
             </View>
             <SignOutScreen/>
           </LinearGradient>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
       borderColor: '#154c79'
     },
     botContainer: {
-      marginTop: 90,
+      marginTop: 120,
       height:10,
     },
     element: {
@@ -78,10 +78,11 @@ const styles = StyleSheet.create({
       padding:7,
       width:300,
       height:40,
-      color:"#fff",
-      borderColor: "#fff",
-      opacity:0.8
-    }
+      color:"#154c79",
+      borderColor: "#154c79",
+      backgroundColor:"#fefefe",
+      borderRadius:8
+    },
 });
 
 export default AccountScreen;

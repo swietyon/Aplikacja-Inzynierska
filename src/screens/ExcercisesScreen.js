@@ -4,6 +4,7 @@ import { Text, View, Button , FlatList, StyleSheet} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
 import { Icon } from 'react-native-elements';
+import ProgressComponent from '../components/ProgressComponent';
 
 // const anotherExcercise = () => {
 //     let counter = 0;
@@ -13,12 +14,13 @@ import { Icon } from 'react-native-elements';
 //     let counter = 0;
 // }
 
+
 const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
     const data = [
         { diseases_Id:1, title: 'mp1', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '1' },
-        { diseases_Id:2, title: 'mp2', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '2' },
-        { diseases_Id:3, title: 'mp3', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '3' }, 
+        { diseases_Id:2, title: 'mp2', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '2' },
+        { diseases_Id:3, title: 'mp3', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '3' }, 
         { diseases_Id:4, title: 'mp4', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '4' },
         { diseases_Id:5, title: 'mp5', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '5' },
         { diseases_Id:6, title: 'mp6', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '6' }]
@@ -26,24 +28,23 @@ const ExcercisesScreen = ( { route, navigation } ) => {
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     const {title, icon, imgLink, key} = route.params;
-
+    const [number, setNumber] = useState();
     useEffect(() => {
       setExcercises(data);
+      setNumber(1);
     }, []);
     
         return (
             <>
             <View style={styles.container}>
                 <FlatList
-                horizontal={true}
                 contentContainerStyle={{
-                    paddingBottom:10,
-                    alignItems: 'center',
-                    backgroundColor:'#fff'
+                    alignItems: 'center'
                 }}
                 data={excercises}
-                renderItem={({item}) => ( (item.diseases_Id == 6) ? (
+                renderItem={({item}) => ( (item.diseases_Id == number) ? (
                     <View>
+                        <Text>{item.title}</Text>
                         <Video
                             ref={video}
                             style={styles.video}
@@ -61,21 +62,24 @@ const ExcercisesScreen = ( { route, navigation } ) => {
                         </TouchableOpacity>
                     </View>
                 ): null
-)}/>
-                
-                    
+                )}/>               
                         <Text style={s.textStyle2}> {(JSON.stringify(title)).replace(/"([^"]+)":/g, '$1:')} </Text>
+            </View>
+            
+            <View>
+                <ProgressComponent />
             </View>
 
 {/* Buttons */}
+
             <View style={s.itemsInline}>
                     <View style={s.backButton}>
-                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => navigation.goBack()}>
+                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => {(number > 1) ? setNumber(number-1): null}}>
                         <Icon style={s.textStyle2} name='arrow-back'color='#fff'fontSize='221'/>
                         </TouchableOpacity>
                     </View>
                     <View style={s.nextButton}>
-                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => navigation.goBack()}>
+                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => {(number < 3) ? setNumber(number+1): null}}>
                             <Icon style={s.textStyle2} name='arrow-back'color='#fff'fontSize='221'/>
                         </TouchableOpacity>
                     </View>
@@ -93,14 +97,12 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center',
         top:'1%',
-        marginBottom:"35%",
     },
     video: {
         backgroundColor:"#000",
-        width:310,     
+        width:330,     
         height:200,
-        borderRadius:20,
-        marginEnd:20
+        borderRadius:10,
     }
 });
 

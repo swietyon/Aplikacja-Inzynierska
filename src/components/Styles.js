@@ -26,7 +26,6 @@ module.exports = StyleSheet.create({
         color:'red',
         fontStyle:"italic",
         opacity:0.5,
-
         textAlign:"center"
     },
     Images: {
@@ -49,9 +48,7 @@ module.exports = StyleSheet.create({
         borderWidth: 2, 
         borderRadius:5,
         fontSize: 20,
-        textAlign: 'center',
-        borderColor: '#fff',
-        borderWidth:0.5
+        textAlign: 'center'
     },
     touchableOpacityStyle: {
         height: 50,
@@ -63,11 +60,21 @@ module.exports = StyleSheet.create({
         borderRadius: 5,
         alignSelf: 'center'
     },
+    touchableOpacityStyleNextPreviousButton: {
+        height: 50,
+        width: 50,
+        backgroundColor: '#fff',
+        margin:10,
+        borderRadius: 5,
+        alignSelf: 'center',
+        borderColor: '#154c79',
+        borderWidth:2,
+    },
     itemsInline:{
-        alignSelf:'center',
         position:'absolute',
         flexDirection: 'row',
-        bottom:'8%',
+        bottom:'12%',
+        opacity:0.7,
     },
     textStyle: {
         margin: 15,
@@ -86,7 +93,7 @@ module.exports = StyleSheet.create({
     },
     arrows: {
         fontSize: 40,
-        color: '#fff',
+        color: '#154c79',
         fontWeight: 'bold',
         alignSelf: 'center',
         marginTop:4
@@ -122,6 +129,9 @@ module.exports = StyleSheet.create({
         color:'#fff',
         fontWeight:"bold",
         textAlign: 'center',
+    },
+    nextButton: {
+        marginRight:0
     }
     
 });

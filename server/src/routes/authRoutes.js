@@ -2,16 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
+const Disease = mongoose.model('Disease');
 
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
     const { username, email, password, birth, gender} = req.body;
-
     try {
         const user = new User({ username, email, password, birth, gender});
         await user.save();
-
         const token = jwt.sign({ userId: user._id },'MY_SECRET_KEY');
         res.send({ user, token });
     }
@@ -28,6 +27,7 @@ router.post('/signin', async (req,res) => {
     }
 
     const user = await User.findOne({ email });
+    
     if (!user) {
         return res.status(422).send({ error: 'Taki email nie istnieje'});
     }

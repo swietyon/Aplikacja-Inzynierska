@@ -20,7 +20,7 @@ import ProgressComponent from '../components/ProgressComponent';
 const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
     const data = [
-        { diseases_Id:1, title: 'Ćwiczenie 1', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '1', dsc: "akdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsd" },
+        { diseases_Id:1, title: 'Ćwiczenie 1', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '1', dsc: "akdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdofodsifosdoafsd" },
         { diseases_Id:2, title: 'mp2', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '2', dsc: "akdskmlfsnklsdnofmdsaofmosdmfosadofmdosafmioadsifoiimsadofodsifosdoafsd"  },
         { diseases_Id:3, title: 'mp3', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '3', dsc: "akdskmlfnklsdnofmdsaofmosdmfosadofmdosaffadfsaodoijwjdoqwjdojwqiomioadsifoiimsadofodsifosdoafsd"  }, 
         { diseases_Id:4, title: 'mp4', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '4', dsc: "akdskmlfnklsdnofmdsaofmosdmfosadofmdosafmioadsifoiimsadofodsifosdoafsd"  },
@@ -45,7 +45,7 @@ const ExcercisesScreen = ( { route, navigation } ) => {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             >
-            <View style={{top:10}}>
+            <View style={{top:10, paddingBottom:130}}>
                 <FlatList
                 contentContainerStyle={{
                     alignItems: 'center'
@@ -53,7 +53,9 @@ const ExcercisesScreen = ( { route, navigation } ) => {
                 data={excercises}
                 renderItem={({item}) => ( (item.diseases_Id == number) ? (
                     <View>
+                        <View style={styles.titleContainer}>
                         <Text style={styles.title}>{item.title}</Text>
+                        </View>
                         <Video
                             ref={video}
                             style={styles.video}
@@ -75,13 +77,13 @@ const ExcercisesScreen = ( { route, navigation } ) => {
         {/* Buttons */}
             <View style={s.itemsInline}>
                     <View style={s.backButton}>
-                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => {(number > 1) ? setNumber(number-1): null}}>
-                        <MaterialCommunityIcons style={s.arrows} name='chevron-left'color='#fff'/>
+                        <TouchableOpacity style={s.touchableOpacityStyleNextPreviousButton} title="Go back" onPress={() => {(number > 1) ? setNumber(number-1): null}}>
+                        <MaterialCommunityIcons style={s.arrows} name='chevron-left'/>
                         </TouchableOpacity>
                     </View>
                     <View style={s.nextButton}>
-                        <TouchableOpacity style={s.touchableOpacityStyle} title="Go back" onPress={() => {(number < 3) ? setNumber(number+1): null}}>
-                            <MaterialCommunityIcons style={s.arrows} name='chevron-right'color='#fff'/>
+                        <TouchableOpacity style={s.touchableOpacityStyleNextPreviousButton} title="Go back" onPress={() => {(number < 3) ? setNumber(number+1): null}}>
+                            <MaterialCommunityIcons style={s.arrows} name='chevron-right'/>
                         </TouchableOpacity>
                     </View>
             </View>
@@ -105,25 +107,28 @@ const styles = StyleSheet.create({
     video: {
         backgroundColor:"#000",
         alignSelf:"center",
-        width:350,     
+        width:315,     
         height:200,
 
+    },
+    titleContainer: {
+        backgroundColor:"#fff",
+        padding:3,
+        width:315,
+        borderTopRightRadius:10,
+        borderTopLeftRadius:10,
     },
     title: {
         color: '#154c79',
         fontSize:23,
         alignSelf:"center",
         textAlign:'center',
-        backgroundColor:"#fff",
         padding:3,
-        width:350,
-        borderTopRightRadius:10,
-        borderTopLeftRadius:10,
         fontWeight:"bold"
     },
     bottomInfo: {
         height:180,
-        width:350,
+        width:315,
         backgroundColor:"#154c79",
         borderBottomLeftRadius:10,
         borderBottomRightRadius:10
@@ -133,7 +138,7 @@ const styles = StyleSheet.create({
         fontSize:16,
         backgroundColor:"#154c79",
         textAlign:"center",
-        margin:5
+        margin:8
     }
 });
 

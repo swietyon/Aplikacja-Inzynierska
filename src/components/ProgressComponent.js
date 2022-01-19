@@ -9,11 +9,13 @@ const ProgressComponent = () => {
     const [sliding, setSliding] = useState("Inactive");
     return (
         <View style={styles.container}>
+            <View style = {styles.rangeStyle}>
+                <Text style ={styles.circleValue}> {range} </Text>
+            </View>
             
-            <Text style ={styles.circleValue}> {range} </Text>
 
             <Slider
-                style={{width:300, height:50}}
+                style={{width:280, height:50}}
                 minimumValue={0}
                 maximumValue={10}
                 minimumTrackTintColor='#154c79'
@@ -52,17 +54,18 @@ const styles = StyleSheet.create({
         opacity:0.7
     },
     circleValue: {
-        height:75,
-        width:75,
         fontSize: 28,
         textAlign:"center",
-        alignContent:"center",
-        justifyContent:"center",
-        backgroundColor:"#fff",
         color:"#154c79",
-        padding:20,
-        borderRadius:100,
+        justifyContent:"center",
         fontWeight:"bold"
+    },
+    rangeStyle: { 
+        height:75,
+        width:75,
+        backgroundColor:"#fff",
+        justifyContent:"center",
+        borderRadius:100,
     },
     onSaveTitle: {
         fontSize:17,

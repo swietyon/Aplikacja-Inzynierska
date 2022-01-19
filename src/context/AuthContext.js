@@ -65,6 +65,7 @@ const signin = (dispatch) => async ({ email, password }) => {
 };
 
 const tryLocalSignin = (dispatch) => async () => {
+  console.log("ASDFJADSIFISDNAI:",await AsyncStorage.getAllKeys());
   const token = await AsyncStorage.getItem("token");
   const user = await AsyncStorage.getItem("user");
   if (token) { 

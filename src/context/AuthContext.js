@@ -41,7 +41,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
   catch (err) {
       dispatch({
         type: "add_error",
-        payload: "Wystąpił błąd przy rejestracji. Spróbuj zmienić adres email",
+        payload: "Wystąpił błąd przy rejestracji",
       });
   }
 };

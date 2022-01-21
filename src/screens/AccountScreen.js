@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import SignOutScreen from '../components/SignOutScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const AccountScreen = (params) => {
@@ -35,7 +33,6 @@ const AccountScreen = (params) => {
                 <Text style={styles.textStyle}>{password}</Text>
               </View>
             </View>
-            <SignOutScreen/>
           </LinearGradient>
           <Image 
             style={styles.image} 
@@ -89,7 +86,7 @@ const styles = StyleSheet.create({
     textContainer: {
       width:300,
       height:40,
-      marginTop:5,
+      marginTop:10,
       borderColor: "#154c79",
       backgroundColor:"#fefefe",
       borderRadius:8,

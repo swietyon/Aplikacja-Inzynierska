@@ -102,6 +102,12 @@ module.exports = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'center'
     },
+    arrowWhite: {
+        fontSize: 35,
+        color: '#fff',
+        fontWeight: 'bold',
+        alignSelf: 'center'
+    },
     Element: {
         width: 300,
         height: 150,

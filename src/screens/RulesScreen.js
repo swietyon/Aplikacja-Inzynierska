@@ -2,23 +2,22 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
   const data = ([
-    { title: 'Regulamin ćwiczącego', description: 5, key: '1' },
-    { title: 'Ćwiczenia z MedApp', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", key: '2' },
-    { title: 'Rozgrzewka', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", key: '3' }, 
-    { title: 'Zasada4', description: 3, key: '4' },
-    { title: 'Zasada5', description: 1, key: '5' },
-    { title: 'Zasada3', description: 9, key: '6' }, 
-    { title: 'Zasada4', description: 3, key: '7' },
-    { title: 'Zasada5', description: 1, key: '8' },
-    { title: 'Zasada3', description: 9, key: '9' }, 
-    { title: 'Zasada4', description: 3, key: '10' },
-    { title: 'Zasada5', description: 1, key: '11' },
-    { title: 'Twórcy', description: 9, key: '12' }
+    { title: 'Zasada pierwsza', description: "Przed rozpoczęciem ćwiczeń należy skonsultować się z lekarzem w celu zdiagnozowania urazu oraz wyeliminowania przeciwwskazań zdrowotnych mogących mieć wpływ na zdrowie lub bezpieczeństwo ćwiczącego.", key: '1' },
+    { title: 'Zasada druga', description: "Ćwiczenia powinny być wykonywane na terenie płaskim, stabilnym. Zadbaj aby podłoże było suche, a pomieszczenie dobrze oświetlone", key: '2' },
+    { title: 'Zasada trzecia', description: "Na czas ćwiczeń zalecamy założyć wygodną odzież sportową, która nie będzie ograniczać ruchów ćwiczącego.", key: '3' }, 
+    { title: 'Zasada czwarta', description: "Ćwiczenia powinny być wykonywane zgodnie z wizualizacją zamieszczoną na filmiku oraz zgodnie z opisem, który znajduje się pod danym video określającym ćwiczenia", key: '4' },
+    { title: 'Zasada piąta', description: "Zestawy ćwiczeniowe powinny być dostosowane do wymaganej przez użytkownika skali trudności", key: '5' },
+    { title: 'Zasada szósta', description: "Ilość serii oraz powtórzeń powinna być progresywna (rosnąco)", key: '6' }, 
+    { title: 'Zasada siódma', description: "Podczas treningu ważna jest obserwacja sygnałów ciała. Niepoprawne lub nadmierne wykonywanie ćwiczeń mogą narazić zdrowie ćwiczącego. Jeżeli podczas ćwiczeń wystąpią niepowołane bóle mięśniowe, ucisiki w klatce piersiowej, nieregularna praca serca, zawroty głowy lub mdłości należy natychmiast zakończyć bieżące ćwiczenia.", key: '7' },
+    { title: 'Zasada ósma', description: "Zaczynając wykonywanie danego ćwiczenia należy przyjąć postawę wyjściową według zaleceń widocznych na filmiku przedstawiającym dane ćwiczenie", key: '8' },
+    { title: 'Rozgrzewka', description: "Przed przystąpieniem do ćwiczeń zalecane jest rozgrzanie danych partii mięśniowych", key: '9' },
+    { title: 'Twórcy', description: "Maksymilian Świętoń", key: '10' }
   ])
 
   const [rules, setRules] = useState([]);
@@ -29,11 +28,13 @@ const RulesScreen = ({navigation}) => {
 
   const [i,setI] = useState('0');
   const [helper, setHelper] = useState('0');
+  const [arrowName, setArrowName] = useState('chevron-down');
 
   const myfunction = (item) => {
     if (i == '0'){
       setHelper(item);
       setI('1');
+      setArrowName("chevron-up");
       return(i);
     }
     else if (item != helper) {
@@ -42,6 +43,7 @@ const RulesScreen = ({navigation}) => {
     }
     else{
       setHelper(item);
+      setArrowName("chevron-down");
       setI('0');
       return(i);
     }
@@ -58,12 +60,16 @@ const RulesScreen = ({navigation}) => {
                 <View style={styles.elements}>
                   <TouchableOpacity onPress={() => {myfunction(item.key)}}>
                   <View style={styles.element}>
+                    <MaterialCommunityIcons style={s.arrows} name="chevron-down"/>
                     <Text style={styles.textStyle}>{item.title}</Text>
                     </View>
                   </TouchableOpacity>
                   {((i == '1') && item.key == helper) ? 
                         <View style={styles.textContainer}>
                         <Text style={styles.smallerText}>{item.description}</Text>
+                        <TouchableOpacity onPress={() => {myfunction(item.key)}}>
+                          <MaterialCommunityIcons style={s.arrowWhite} name={arrowName}/>
+                        </TouchableOpacity>
                         </View>
                       :
                       null}
@@ -94,7 +100,8 @@ const styles = StyleSheet.create({
     borderLeftColor:'#154c79',
     backgroundColor:"#fff",
     borderBottomRightRadius:10,
-    borderBottomLeftRadius:10
+    borderBottomLeftRadius:10,
+    flexDirection: "row",
   },
   textStyle: {
     margin:25,

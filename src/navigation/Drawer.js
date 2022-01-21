@@ -5,6 +5,7 @@ import AccountScreen from "../screens/AccountScreen";
 import ProgressScreen from "../screens/ProgressScreen";
 import RulesScreen from "../screens/RulesScreen";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SignOutScreen from "../components/SignOutScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -82,17 +83,6 @@ const DrawerScreen = ({route, navigation}) => {
          />
       ),
    }}/>
-    <Drawer.Screen name="Postępy" component={ProgressScreen} 
-    options={{
-      drawerIcon: ({focused, size}) => (
-         <MaterialCommunityIcons
-            name="progress-check"
-            size={size}
-            style={{alignContent:"center"}}
-            color={focused ? 'green' : '#154c79'}
-         />
-      ),
-   }}/>
     <Drawer.Screen name="Jak ćwiczyć?" component={RulesScreen} 
     options={{
       drawerIcon: ({focused, size}) => (
@@ -104,7 +94,19 @@ const DrawerScreen = ({route, navigation}) => {
          />
       ),
    }}/>
+   <Drawer.Screen name="Wyloguj się" component={SignOutScreen}
+    options={{
+      drawerIcon: ({focused, size}) => (
+         <MaterialCommunityIcons
+            name="logout"
+            size={size}
+            style={{alignContent:"center"}}
+            color={focused ? 'green' : '#154c79'}
+         />
+      ),
+   }}/>
     </Drawer.Navigator>
+    
   );
 };
 

@@ -22,7 +22,11 @@ const BottomTabs = () => {
         borderTopLeftRadius:15,
         position:"absolute",
         overflow: 'hidden',
-      }
+      },
+      tabBarLabelStyle: {
+        fontSize: 14,
+        margin:5
+      },
    }}
     >
       <Tab.Screen
@@ -30,7 +34,7 @@ const BottomTabs = () => {
         component={DiseasesStackScreen}
         options={{ 
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-heart" color={color} size={40} />
+            <MaterialCommunityIcons name="account-heart" color={color} size={35} />
           ),
         }}
       />
@@ -39,16 +43,16 @@ const BottomTabs = () => {
         component={CurrentCoursesStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-check" color={color} size={40} />
+            <MaterialCommunityIcons name="account-check" color={color} size={35} />
           ),
         }}
       />
       <Tab.Screen
-        name="Jak ćwiczyć"
+        name="Postępy"
         component={HowToTrainStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-question" color={color} size={40} />
+            <MaterialCommunityIcons name="progress-check" color={color} size={35} />
           ),
         }}
       />

@@ -26,7 +26,7 @@ const ProgressComponent = () => {
                 onSlidingComplete={() => setSliding("Done")}
             />
             {(sliding == "Inactive" || sliding == "Sliding") ? 
-                <Text style={styles.title}>Określ ból za pomocą suwaka</Text>
+                <Text style={styles.title}>Określ skalę trudności za pomocą suwaka</Text>
                 :
                 <TouchableOpacity>
                     <View style={styles.gradeStyle}>

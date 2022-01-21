@@ -1,41 +1,60 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
-import { Image, StyleSheet, View, FlatList} from 'react-native';
+import { Image, StyleSheet, View, FlatList, ActivityIndicator} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const DiseasesScreen = ( { navigation }) => {
-    const s = require('../components/Styles');
-    const data = ([
-        { title: 'Wzmocnienie kolana', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
-        { title: 'Wzmocnienie pachwiny', icon: 3, imgLink: require('../img/groin.png'), key: '2' },
-        { title: 'Wzmocnienie ramienia', icon: 9, imgLink: require('../img/shoulder.png'), key: '3' }, 
-        { title: 'Wzmocnienie dolnej partii pleców', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-        { title: 'Wzmocnienie górnej partii pleców', icon: 1, imgLink: require('../img/upperback.png'), key: '5' }
-    ])
+    const s = require('../components/Styles'); 
+    const diseasesURL = "https://bbcb-5-173-33-44.ngrok.io/diseases";
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-    const [rehabs, setRehabs] = useState([]);
-    
     useEffect(() => {
-        setRehabs(data);
-        console.log("Zalogowany");
+        fetch(diseasesURL)
+        .then((response) => response.json())
+        .then((json) => {
+            setData(json);
+            console.log(json);
+        })
+        .catch((error) => alert(error))
+        .then(setLoading(false));
     }, []);
-        return (  
+    
+    const [show, setShow] = useState(true)
+
+  // On componentDidMount set the timer
+    useEffect(() => {
+        const timeId = setTimeout(() => {
+        // After 3 seconds set the show value to false
+        setShow(false)
+        }, 1500)
+        return () => {
+            clearTimeout(timeId)
+        }
+    }, []);
+
+        return (
             <>  
             <LinearGradient
                 colors={['white','#154c79']}
                 style={s.container}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-            >
+            >   
+            {/* Created Timeout Loading 1.5 sec*/}
+            {
+                (!show) 
+                ?
+                <>
                 <FlatList 
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                     paddingBottom:"20%",
                     alignItems: 'center',
                 }}
-                data={rehabs}
+                data={data}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item)}}>    
                         <View style={s.Element}>
@@ -45,23 +64,68 @@ const DiseasesScreen = ( { navigation }) => {
                                     style={s.img} 
                                     source={item.imgLink} 
                                     />
-                            </View>
-                        </View>  
-                    </TouchableOpacity>    
+                        </View>
+                    </View>  
+                </TouchableOpacity>    
                 )}        
                 > 
                 </FlatList>
-                </LinearGradient>
-                </> 
+                </>
+                : 
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color="#154c79"/> 
+                </View>
+            }
+            </LinearGradient>
+            </>
         );
 };
 
 const styles = StyleSheet.create({
-    
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        position:"absolute"
+      },
 });
 
 export default DiseasesScreen;
 
-// api:
-// key: 8ef084386a4d4714aaafc35db3cf2951
-// secret: 7286b54e1b7540a4b32e30476616f764
+// const data = [
+//         { 
+//             title: 'Wzmocnienie kolana',
+//             describe: "",
+//             imgLink: {
+//                 uri: "https://res.cloudinary.com/swietyon/image/upload/v1642711946/knee_aibxek.png"
+//             },
+//             key: 1
+//         },
+//         { 
+//             title: 'Wzmocnienie pachwiny', 
+//             imgLink: {
+//                 uri: "https://res.cloudinary.com/swietyon/image/upload/v1642711943/groin_vosbcl.png"
+//             }, 
+//             key: 2 
+//         },
+//         { 
+//             title: 'Wzmocnienie ramienia', 
+//             imgLink: {
+//                 uri: "https://res.cloudinary.com/swietyon/image/upload/v1642711937/shoulder_tbmrdr.png"
+//             }, 
+//             key: 3 
+//         }, 
+//         { 
+//             title: 'Wzmocnienie dolnej partii pleców', 
+//             imgLink: {
+//                 uri: "https://res.cloudinary.com/swietyon/image/upload/v1642711934/lowerback_j583j0.png"
+//             }, 
+//             key: 4 
+//         },
+//         { 
+//             title: 'Wzmocnienie górnej partii pleców', 
+//             imgLink: {
+//                 uri: "https://res.cloudinary.com/swietyon/image/upload/v1642711940/upperback_jqa9pi.png"
+//             }, 
+//             key: 5
+//         }
+//     ]

@@ -11,12 +11,6 @@ const Drawer = createDrawerNavigator();
 
 const DrawerScreen = ({route, navigation}) => {
   const {email, user, birth, gender, username} = JSON.parse(route.params);
-  const profileInfo = {
-		firstName: 'Celsius',
-		lastName: 'W.',
-		imgSource: require('../img/knee.png')
-	}
-
 
   return (
     <Drawer.Navigator 

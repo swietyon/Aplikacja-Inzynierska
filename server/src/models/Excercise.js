@@ -17,3 +17,14 @@ const ExcercisesSchema = new mongoose.Schema({
 });
 
 const Excercise = mongoose.model('Excercise', ExcercisesSchema);
+
+const createAndSaveExcercise = () => {
+    Excercise.create(diseaseArray,(error, data) => {
+        if(error){
+            console.log("Ćwiczenie już istnieje");
+        }
+        else{
+            console.log(data);
+        }
+    })  
+}

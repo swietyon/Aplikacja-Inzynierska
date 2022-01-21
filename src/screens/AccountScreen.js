@@ -22,10 +22,18 @@ const AccountScreen = (params) => {
                 end={{ x: 1, y: 1 }}
             >
             <View style={styles.botContainer}>
-              <Text style={styles.textStyle}>{username}</Text>
-              <Text style={styles.textStyle}>{email}</Text>
-              <Text style={styles.textStyle}>{birth}</Text>
-              <Text style={styles.textStyle}>{password}</Text>
+              <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>{username}</Text>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>{email}</Text>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>{birth}</Text>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>{password}</Text>
+              </View>
             </View>
             <SignOutScreen/>
           </LinearGradient>
@@ -71,18 +79,22 @@ const styles = StyleSheet.create({
       fontSize: 22,
       color: 'white',
       fontWeight: 'bold',
-      alignSelf: 'center',
+      color:"#154c79",
       textAlign:'center',
-      marginTop:8,
+      marginTop:1,
       borderBottomWidth:0.5,
       padding:7,
+      
+    },
+    textContainer: {
       width:300,
       height:40,
-      color:"#154c79",
+      marginTop:5,
       borderColor: "#154c79",
       backgroundColor:"#fefefe",
-      borderRadius:8
-    },
+      borderRadius:8,
+      alignSelf: 'center'
+    }
 });
 
 export default AccountScreen;

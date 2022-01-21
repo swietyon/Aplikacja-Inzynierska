@@ -4,7 +4,7 @@ import trackerApi from "../api/tracker";
 import * as RootNavigation from "../navigation/RootNavigation";
 import { Alert } from "react-native";
 
-
+//cases after function is executed
 const authReducer = (state, action) => {
   switch (action.type) {
     case "add_error":
@@ -26,6 +26,7 @@ const authReducer = (state, action) => {
   }
 };
 
+// Registration
 const signup = (dispatch) => async ({ email, username, birth, gender, password}) => {
   try {
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
@@ -45,6 +46,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
   }
 };
 
+//Logging in
 const signin = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/signin", { email, password });
@@ -64,8 +66,8 @@ const signin = (dispatch) => async ({ email, password }) => {
   }
 };
 
+//Automatic logging in if token exist
 const tryLocalSignin = (dispatch) => async () => {
-  console.log("ASDFJADSIFISDNAI:",await AsyncStorage.getAllKeys());
   const token = await AsyncStorage.getItem("token");
   const user = await AsyncStorage.getItem("user");
   if (token) { 
@@ -77,27 +79,25 @@ const tryLocalSignin = (dispatch) => async () => {
   }
 };
 
+//Cleaning error message
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: "clear_error_message" });
 };
 
+//Logging out
 const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: "signout" });
   RootNavigation.navigate("AuthStackScreen");
 };
 
+// OnRegister welcome alert
 const alert = () => {
   Alert.alert(
-    "UP MedApp",
-    "My Alert Msg",
+    "Cześć, witamy w UP MedApp",
+    "Aplikacja UP MedApp pozwala użytkownikowi wzmocnić partie mięśniowe po przebytych kontuzjach. Dzięki konsultacji ze specjalistami zaprojektowaliśmy różne ćwiczenia, które pomogą Ci zapomnieć o urazach i cieszyć się na nowo sprawnością. Zapraszamy do zapoznania się z zasadami ćwiczeń w zakładce 'Zasady' w menu bocznym. Zachęcamy do odbycia rozgrzewki przed ćwiczeniami. Powodzenia!",
     [
-      {
-        text: "Cancel",
-        onPress: () => console.log("okey"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
+      { text: "Zaczynam" }
     ]
   );
 }

@@ -27,7 +27,7 @@ router.post('/signin', async (req,res) => {
     }
 
     const user = await User.findOne({ email });
-    
+
     if (!user) {
         return res.status(422).send({ error: 'Taki email nie istnieje'});
     }

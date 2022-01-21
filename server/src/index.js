@@ -1,18 +1,17 @@
 require('./models/User');
 require('./models/Disease');
-require('./models/Excercise');
-require('./models/Progress');
-require('./models/CurrentDisease');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const diseaseRoutes = require('./routes/diseaseRoutes');
 const requireAuth = require('./middlewares/requireAuth');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(diseaseRoutes);
 
 const mongoUri = 'mongodb+srv://admin:zaq1%40WSX@cluster0.4m9pl.mongodb.net/InzServer?retryWrites=true&w=majority';
 

@@ -4,17 +4,12 @@ import { StyleSheet, Text, Pressable } from 'react-native';
 module.exports = StyleSheet.create({
     Container: {
        alignItems: 'center', //Centered vertically
-       flex:1
+       flex:1,
     },
     container: {
         flex:1,
+        paddingVertical:20,
         backgroundColor: 'white',
-        paddingHorizontal: 12,
-        margin:-30,
-        paddingTop:50,
-        paddingBottom:50,
-        paddingLeft:30,
-        paddingRight:30,
         justifyContent: 'center', //Centered horizontally
         alignItems: 'center', //Centered vertically
     },
@@ -42,7 +37,8 @@ module.exports = StyleSheet.create({
      inputStyle: {
         marginBottom:10,
         backgroundColor:'#F0F0F0', 
-        width: '100%',
+        alignSelf:"center",
+        width: '90%',
         height:35, 
         borderColor:'white', 
         borderWidth: 2, 
@@ -60,20 +56,29 @@ module.exports = StyleSheet.create({
         borderRadius: 5,
         alignSelf: 'center'
     },
-    touchableOpacityStyleNextPreviousButton: {
-        height: 50,
-        width: 50,
+    previousButton: {
+        height: 40,
+        width: 60,
         backgroundColor: '#fff',
-        margin:10,
+        marginHorizontal:100,
         borderRadius: 5,
-        alignSelf: 'center',
+        borderColor: '#154c79',
+        borderWidth:2,
+    },
+    nextButton: {
+        height: 40,
+        width: 60,
+        backgroundColor: '#fff',
+        marginHorizontal:100,
+        borderRadius: 5,
         borderColor: '#154c79',
         borderWidth:2,
     },
     itemsInline:{
         position:'absolute',
-        flexDirection: 'row',
-        bottom:'12%',
+        flexDirection: "row",
+        marginHorizontal:50,
+        bottom:'15%',
         opacity:0.7,
     },
     textStyle: {
@@ -92,11 +97,10 @@ module.exports = StyleSheet.create({
         marginTop:10
     },
     arrows: {
-        fontSize: 40,
+        fontSize: 35,
         color: '#154c79',
         fontWeight: 'bold',
-        alignSelf: 'center',
-        marginTop:4
+        alignSelf: 'center'
     },
     Element: {
         width: 300,
@@ -130,8 +134,5 @@ module.exports = StyleSheet.create({
         fontWeight:"bold",
         textAlign: 'center',
     },
-    nextButton: {
-        marginRight:0
-    }
     
 });

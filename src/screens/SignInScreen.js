@@ -65,19 +65,16 @@ const SignInScreen = ({navigation}) => {
                             }}
                          >
                         <Text style={{color:'#154c79',fontSize:17}}>Nie masz jeszcze konta? Zarejestruj się!</Text>
-                    </TouchableOpacity>               
+                    </TouchableOpacity>              
                 </LinearGradient>
                 </>
         );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex:1,
         paddingTop:50,
-        paddingRight:30,
-        paddingLeft:30,
         justifyContent: 'center', //Centered horizontally
         alignItems: 'center', //Centered vertically
     },

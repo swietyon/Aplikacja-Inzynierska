@@ -7,7 +7,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Context as AuthContext } from '../context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskInput from 'react-native-mask-input';
-import ResolveAuth from '../components/ResolveAuth';
 
 
 const SignUpScreen = ( {navigation} ) => {
@@ -97,7 +96,6 @@ const SignUpScreen = ( {navigation} ) => {
             <ScrollView  
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1 }}>
-                <ResolveAuth email={email} username={username} birth={birth} password={password} />
                 <View style={styles.logoContainer}>
                     <Image 
                         source={require('../img/logo.png')} 

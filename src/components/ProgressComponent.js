@@ -12,8 +12,6 @@ const ProgressComponent = () => {
             <View style = {styles.rangeStyle}>
                 <Text style ={styles.circleValue}> {range} </Text>
             </View>
-            
-
             <Slider
                 style={{width:280, height:50}}
                 minimumValue={0}
@@ -31,7 +29,9 @@ const ProgressComponent = () => {
                 <Text style={styles.title}>Określ ból za pomocą suwaka</Text>
                 :
                 <TouchableOpacity>
-                    <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
+                    <View style={styles.gradeStyle}>
+                        <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
+                    </View>
                 </TouchableOpacity>
             }  
             <StatusBar style="auto" />
@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize:17,
         color:"#fff",
-        padding:10,
         textAlign:"center",
-        opacity:0.7
+        opacity:0.7,
+        marginBottom:15
     },
     circleValue: {
         fontSize: 28,
@@ -70,13 +70,16 @@ const styles = StyleSheet.create({
     onSaveTitle: {
         fontSize:17,
         color:"#fff",
-        backgroundColor:"green",
-        padding:10,
-        width:150,
+        padding:5,
         textAlign:"center",
-        opacity:0.9,
         fontWeight:"bold",
-        borderRadius:10
+    },
+    gradeStyle: {
+        width:150,
+        backgroundColor:"green",
+        borderRadius:10,
+        opacity:0.9,
+        marginBottom:15
     }
 })
 export default ProgressComponent;

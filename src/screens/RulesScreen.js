@@ -7,18 +7,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
   const data = ([
-    { title: 'Regulamin ćwiczącego', icon: 5 , imgLink: require('../img/knee.png'), key: '1' },
-    { title: 'Ćwiczenia z MedApp', icon: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/groin.png'), key: '2' },
-    { title: 'Rozgrzewka', icon: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/shoulder.png'), key: '3' }, 
-    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '4' },
-    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '5' },
-    { title: 'Zasada3', icon: 9, imgLink: require('../img/shoulder.png'), key: '6' }, 
-    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '7' },
-    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '8' },
-    { title: 'Zasada3', icon: 9, imgLink: require('../img/shoulder.png'), key: '9' }, 
-    { title: 'Zasada4', icon: 3, imgLink: require('../img/lowerback.png'), key: '10' },
-    { title: 'Zasada5', icon: 1, imgLink: require('../img/knee.png'), key: '11' },
-    { title: 'Twórcy', icon: 9, imgLink: require('../img/knee.png'), key: '12' }
+    { title: 'Regulamin ćwiczącego', description: 5 , imgLink: require('../img/knee.png'), key: '1' },
+    { title: 'Ćwiczenia z MedApp', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/groin.png'), key: '2' },
+    { title: 'Rozgrzewka', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum", imgLink: require('../img/shoulder.png'), key: '3' }, 
+    { title: 'Zasada4', description: 3, imgLink: require('../img/lowerback.png'), key: '4' },
+    { title: 'Zasada5', description: 1, imgLink: require('../img/knee.png'), key: '5' },
+    { title: 'Zasada3', description: 9, imgLink: require('../img/shoulder.png'), key: '6' }, 
+    { title: 'Zasada4', description: 3, imgLink: require('../img/lowerback.png'), key: '7' },
+    { title: 'Zasada5', description: 1, imgLink: require('../img/knee.png'), key: '8' },
+    { title: 'Zasada3', description: 9, imgLink: require('../img/shoulder.png'), key: '9' }, 
+    { title: 'Zasada4', description: 3, imgLink: require('../img/lowerback.png'), key: '10' },
+    { title: 'Zasada5', description: 1, imgLink: require('../img/knee.png'), key: '11' },
+    { title: 'Twórcy', description: 9, imgLink: require('../img/knee.png'), key: '12' }
   ])
 
   const [rules, setRules] = useState([]);
@@ -62,7 +62,9 @@ const RulesScreen = ({navigation}) => {
                     </View>
                   </TouchableOpacity>
                   {((i == '1') && item.key == helper) ? 
-                        <Text style={styles.smallerText}>{item.icon}</Text>
+                        <View style={styles.textContainer}>
+                        <Text style={styles.smallerText}>{item.description}</Text>
+                        </View>
                       :
                       null}
                 </View>
@@ -104,10 +106,12 @@ const styles = StyleSheet.create({
   smallerText: {
     fontSize: 18,
     color: '#fff',
-    backgroundColor:'#154c79',
     padding:8,
-    borderRadius:10
   },
+  textContainer:{
+    backgroundColor:'#154c79',
+    borderRadius:10
+  }
 })
 
 export default RulesScreen;

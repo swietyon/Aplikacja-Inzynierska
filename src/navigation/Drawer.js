@@ -1,6 +1,5 @@
 import React from "react";
-import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
-import { Text , Image, View} from "react-native";
+import { createDrawerNavigator} from "@react-navigation/drawer";
 import { BottomTabs } from "./BottomTabs";
 import AccountScreen from "../screens/AccountScreen";
 import ProgressScreen from "../screens/ProgressScreen";

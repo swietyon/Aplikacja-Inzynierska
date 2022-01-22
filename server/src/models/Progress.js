@@ -7,12 +7,11 @@ const ProgressSchema = new mongoose.Schema({
     grade: {
         type: Number,
     },
-    comparing_user_id: {
+    userId: {
         type: String,
     },
-    comparing_excercise_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Disease'
+    excName: {
+        type: String
     }
 });
 

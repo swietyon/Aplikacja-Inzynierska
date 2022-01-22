@@ -9,10 +9,10 @@ import ResolveAuth from "./src/components/ResolveAuth";
 export default () => {
   return (
       <AuthProvider>
-        <NavigationContainer ref={navigationRef} >
-        <ResolveAuth />
-          <RootStackScreen />
-        </NavigationContainer>
+          <NavigationContainer ref={navigationRef} >
+            <ResolveAuth />
+            <RootStackScreen />
+          </NavigationContainer>
       </AuthProvider>
   )
 };

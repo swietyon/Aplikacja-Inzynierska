@@ -59,7 +59,9 @@ const myEXCScreen = ( { route, navigation } ) => {
                             onPlaybackStatusUpdate={status => setStatus(() => status)}
                         />
                         <ScrollView style={styles.bottomInfo}>
-                            <Text style={styles.description}>{item.excDsc}</Text>
+                            <View style={{alignItems:"center"}}>
+                                <Text style={styles.description}>{item.excDsc}</Text>
+                            </View>
                         </ScrollView>
                         <ProgressComponent title={title}/>
                     </View>
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         backgroundColor:"#fff",
-        padding:3,
+        justifyContent: "center",
         height:60,
         width:315,
         borderTopRightRadius:10,
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
         fontSize:19,
         alignSelf:"center",
         textAlign:'center',
+        justifyContent: 'center',
         padding:3,
         fontWeight:"bold"
     },

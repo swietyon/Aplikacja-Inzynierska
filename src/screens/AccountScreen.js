@@ -36,7 +36,7 @@ const AccountScreen = (params) => {
           </LinearGradient>
           <Image 
             style={styles.image} 
-            source={require("../img/IMAG0332.jpg")} 
+            source={require("../img/account.png")} 
           />
           
         </View> 
@@ -54,13 +54,15 @@ const styles = StyleSheet.create({
     },
     image: {
       position: 'absolute',
+      backgroundColor:"#fff",
       marginTop:30,
       width: 140,
       height: 140,
       alignSelf: 'center',
       borderRadius: 70,
       borderWidth: 2,
-      borderColor: '#154c79'
+      borderColor: '#154c79',
+
     },
     botContainer: {
       marginTop: 120,

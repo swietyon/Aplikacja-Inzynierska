@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
-const Disease = mongoose.model('Disease');
 
 const router = express.Router();
 
@@ -40,7 +39,6 @@ router.post('/signin', async (req,res) => {
     catch (err){
         return res.status(422).send({error: 'Źle wprowadzone hasło lub email'});
     }
-    
 });
 
 module.exports = router;

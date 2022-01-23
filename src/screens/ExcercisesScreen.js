@@ -1,30 +1,23 @@
 import React from 'react';
-import { useState , useEffect} from 'react';
+import { useState , useEffect, useContext} from 'react';
 import { Text, View , FlatList, StyleSheet} from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Context as AuthContext } from '../context/AuthContext';
 
 import ProgressComponent from '../components/ProgressComponent';
 
 
-const myEXCScreen = ( { route, navigation } ) => {
+const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
-    const data = [
-        { diseases_Id:1, title: 'Ćwiczenie 1', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '1', dsc: "akdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdakdskmlfnklsdnofmdsaofmofdafasdsadsdmfosadofmdosafmioadsifoiimsadofodsifosdoafsdofodsifosdoafsd" },
-        { diseases_Id:2, title: 'mp2', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '2', dsc: "akdskmlfsnklsdnofmdsaofmosdmfosadofmdosafmioadsifoiimsadofodsifosdoafsd"  },
-        { diseases_Id:3, title: 'mp3', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '3', dsc: "akdskmlfnklsdnofmdsaofmosdmfosadofmdosaffadfsaodoijwjdoqwjdojwqiomioadsifoiimsadofodsifosdoafsd"  }, 
-        { diseases_Id:4, title: 'mp4', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '4', dsc: "akdskmlfnklsdnofmdsaofmosdmfosadofmdosafmioadsifoiimsadofodsifosdoafsd"  },
-        { diseases_Id:5, title: 'mp5', imgLink: {uri: 'https://res.cloudinary.com/swietyon/video/upload/v1640640049/video-1601982375_mp8g82.mp4'}, key: '5' },
-        { diseases_Id:6, title: 'mp6', imgLink: {uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}, key: '6' }]
-    const [myEXC, setMyEXC] = useState([]);
+    const {} =  useContext(AuthContext);
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
-    const {title, icon, imgLink, key, excercises} = route.params;
+    const {title, excercises} = route.params;
     const [number, setNumber] = useState();
     useEffect(() => {
-      setMyEXC(data);
       setNumber(1);
       console.log(excercises);
     }, []);
@@ -136,7 +129,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default myEXCScreen;
-
-//tokeny: bff2938f-5bc0-4c01-89be-2d959345d752
-// ycZ0kFhJcYSZOGnZzqyPJI9H9P22yF0M4ct6DrabV9HsJQ1RGhs0MnHfhYNbyXTijLqjppUlYsr
+export default ExcercisesScreen;

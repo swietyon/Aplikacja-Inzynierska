@@ -2,10 +2,9 @@ import React from "react";
 import { createDrawerNavigator} from "@react-navigation/drawer";
 import { BottomTabs } from "./BottomTabs";
 import AccountScreen from "../screens/AccountScreen";
-import ProgressScreen from "../screens/ProgressScreen";
 import RulesScreen from "../screens/RulesScreen";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SignOutScreen from "../components/SignOutScreen";
+import SignOutScreen from "../screens/SignOutScreen";
 
 const Drawer = createDrawerNavigator();
 

@@ -5,7 +5,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const SignOutScreen = () => {
-    const s = require('./Styles'); 
+    const s = require('../components/Styles'); 
     const {state, signout} =  useContext(AuthContext);
         return (
             <>  

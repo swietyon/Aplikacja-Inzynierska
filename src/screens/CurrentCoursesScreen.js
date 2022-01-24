@@ -14,7 +14,6 @@ const CurrentCoursesScreen = ( {navigation} ) => {
         .then((response) => response.json())
         .then((json) => {
             setData(json);
-            console.log(json);
         })
         .catch((error) => alert(error))
         .then(setLoading(false));

@@ -5,22 +5,21 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Video } from 'expo-av';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Context as AuthContext } from '../context/AuthContext';
 
 import ProgressComponent from '../components/ProgressComponent';
 
 
 const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
-    const {} =  useContext(AuthContext);
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     const {title, excercises} = route.params;
     const [number, setNumber] = useState();
+    const id = route.params._id;
     useEffect(() => {
       setNumber(1);
-      console.log(excercises);
     }, []);
+    
     
         return (
             <>
@@ -56,7 +55,7 @@ const ExcercisesScreen = ( { route, navigation } ) => {
                                 <Text style={styles.description}>{item.excDsc}</Text>
                             </View>
                         </ScrollView>
-                        <ProgressComponent title={title}/>
+                        <ProgressComponent title={title} excNumb={number} userId={id}/>
                     </View>
                 ): null
                 )}/>              

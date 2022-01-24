@@ -21,7 +21,6 @@ const DrawerScreen = ({route, navigation}) => {
           borderBottomRightRadius: 20,
           height:80,
         },
-        // alternative color #082740
         drawerStyle:{
           paddingTop:10,
           backgroundColor:"#fff",
@@ -49,7 +48,7 @@ const DrawerScreen = ({route, navigation}) => {
         height:150,
         paddingTop:14
       },
-      title:username,
+      title:"Profil",
       drawerIcon: ({focused, size}) => (
          <MaterialCommunityIcons
             style={{}}
@@ -59,7 +58,7 @@ const DrawerScreen = ({route, navigation}) => {
          />
       ),
    }}/>
-    <Drawer.Screen name="Home" component={BottomTabs}
+    <Drawer.Screen name="Home" initialParams={{ params: JSON.parse(route.params) }} component={BottomTabs}
     options={{
       drawerIcon: ({focused, size}) => (
          <MaterialCommunityIcons
@@ -71,17 +70,6 @@ const DrawerScreen = ({route, navigation}) => {
       ),
    }}
     />
-    <Drawer.Screen name="Profil" initialParams={{ params: JSON.parse(route.params) }} component={AccountScreen}
-    options={{
-      drawerIcon: ({focused, size}) => (
-         <MaterialCommunityIcons
-            name="account"
-            size={size}
-            style={{alignContent:"center"}}
-            color={focused ? 'green' : '#154c79'}
-         />
-      ),
-   }}/>
     <Drawer.Screen name="Jak ćwiczyć?" component={RulesScreen} 
     options={{
       drawerIcon: ({focused, size}) => (

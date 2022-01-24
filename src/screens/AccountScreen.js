@@ -6,7 +6,7 @@ const AccountScreen = (params) => {
   const email = params.route.params.params.email;
   const birth = params.route.params.params.birth.substr(0,10);
   const username = params.route.params.params.username;
-  const password = params.route.params.params.gender;
+  const gender = params.route.params.params.gender;
     const s = require('../components/Styles'); 
     return (
         <View>
@@ -30,7 +30,13 @@ const AccountScreen = (params) => {
                 <Text style={styles.textStyle}>{birth}</Text>
               </View>
               <View style={styles.textContainer}>
-                <Text style={styles.textStyle}>{password}</Text>
+                {
+                  (gender == "man") 
+                  ?
+                  <Text style={styles.textStyle}>mężczyzna</Text>
+                  :
+                  <Text style={styles.textStyle}>kobieta</Text>
+                }
               </View>
             </View>
           </LinearGradient>

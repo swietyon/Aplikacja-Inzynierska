@@ -1,12 +1,22 @@
+// in this component we send : {range}, {currentDate}, {currentUserId}, {props.title}, {props.excNumb}
+
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Slider from '@react-native-community/slider';
 
-const ProgressComponent = () => {
+const ProgressComponent = ( props ) => {
     const [range, setRange] = useState(5)
     const [sliding, setSliding] = useState("Inactive");
+    const { excNumb, title, userId} = props;
+    let separator = '-';
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let currentDate = (`${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`);
+
     return (
         <View style={styles.container}>
             <View style = {styles.rangeStyle}>
@@ -28,7 +38,7 @@ const ProgressComponent = () => {
             {(sliding == "Inactive" || sliding == "Sliding") ? 
                 <Text style={styles.title}>Określ skalę trudności za pomocą suwaka</Text>
                 :
-                <TouchableOpacity>
+                <TouchableOpacity onPress={ () => console.log(userId, title, excNumb, currentDate, range)}>
                     <View style={styles.gradeStyle}>
                         <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
                     </View>

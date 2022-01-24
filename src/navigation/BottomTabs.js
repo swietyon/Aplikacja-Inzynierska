@@ -2,11 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { DiseasesStackScreen, CurrentCoursesStackScreen, HowToTrainStackScreen} from "./StackNavigation";
+import { DiseasesStackScreen,  ProgressStackScreen} from "./StackNavigation";
 
 
 const Tab = createBottomTabNavigator();
-const BottomTabs = () => {
+const BottomTabs = (params) => {
+  const currentUserId = params.route.params.params._id;
   return (
     <Tab.Navigator 
     initialRouteName={DiseasesStackScreen}
@@ -31,6 +32,7 @@ const BottomTabs = () => {
     >
       <Tab.Screen
         name="Terapie"
+        initialParams={{ params: currentUserId }}
         component={DiseasesStackScreen}
         options={{ 
           tabBarIcon: ({ color, size }) => (
@@ -39,17 +41,8 @@ const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Moje terapie"
-        component={CurrentCoursesStackScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-check" color={color} size={35} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Postępy"
-        component={HowToTrainStackScreen}
+        component={ProgressStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="progress-check" color={color} size={35} />

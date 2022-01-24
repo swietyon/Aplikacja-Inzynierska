@@ -6,7 +6,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import DiseasesScreen from "../screens/DiseasesScreen";
 import ExcercisesScreen from "../screens/ExcercisesScreen";
 import CurrentCoursesScreen from "../screens/CurrentCoursesScreen";
-import HowToTrainScreen from "../screens/HowToTrainScreen";
+import ProgressScreen from "../screens/ProgressScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,12 +20,14 @@ const AuthStackScreen = () => {
 };
 export {AuthStackScreen};
 
-const DiseasesStackScreen = () => (
-  <Stack.Navigator initialRouteName="DiseasesScreen">
+const DiseasesStackScreen = (params) => {
+  return(
+    <Stack.Navigator initialRouteName="DiseasesScreen" initialParams={{ params: params.route.params.params}}>
     <Stack.Screen name="Diseases" component={DiseasesScreen} options={{ headerShown:false }} />
     <Stack.Screen name="Excercises" component={ExcercisesScreen} options={{ headerShown:false }} />
   </Stack.Navigator>
-);
+  )
+};
 export {DiseasesStackScreen};
 
 const CurrentCoursesStackScreen = () => (
@@ -35,9 +37,9 @@ const CurrentCoursesStackScreen = () => (
 );
 export {CurrentCoursesStackScreen}
 
-const HowToTrainStackScreen = () => (
-  <Stack.Navigator initialRouteName="HowToTrain">
-    <Stack.Screen name="HowToTrain" component={HowToTrainScreen} options={{ headerShown:false }}/>
+const ProgressStackScreen = () => (
+  <Stack.Navigator initialRouteName="Progress">
+    <Stack.Screen name="Progress" component={ProgressScreen} options={{ headerShown:false }}/>
   </Stack.Navigator>
 );
-export {HowToTrainStackScreen};
+export {ProgressStackScreen};

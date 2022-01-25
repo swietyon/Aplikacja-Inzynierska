@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
 const AccountScreen = (params) => {
   const email = params.route.params.params.email;
@@ -20,7 +21,7 @@ const AccountScreen = (params) => {
                 end={{ x: 1, y: 1 }}
             >
             <View style={styles.botContainer}>
-              <View style={styles.textContainer}>
+              <View style={[styles.textContainer]}>
                 <Text style={styles.textStyle}>{username}</Text>
               </View>
               <View style={styles.textContainer}>
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
       height: 140,
       alignSelf: 'center',
       borderRadius: 70,
-      borderWidth: 2,
+      borderWidth: 3,
       borderColor: '#154c79',
 
     },
@@ -77,14 +78,16 @@ const styles = StyleSheet.create({
     element: {
       margin:20,
       height:40,
-      backgroundColor:'#fff',
-      borderRadius:15
+      borderRadius:15,
+      borderColor:"#fff",
+      borderBottomWidth:1,
+      
     },
     textStyle:{
       fontSize: 22,
       color: 'white',
       fontWeight: 'bold',
-      color:"#154c79",
+      color:"#fff",
       textAlign:'center',
       marginTop:1,
       borderBottomWidth:0.5,
@@ -96,9 +99,12 @@ const styles = StyleSheet.create({
       height:40,
       marginTop:10,
       borderColor: "#154c79",
-      backgroundColor:"#fefefe",
       borderRadius:8,
-      alignSelf: 'center'
+      alignSelf: 'center',
+      borderColor: "#fff",
+      borderBottomWidth:2,
+      borderLeftWidth:2,
+      borderRightWidth:2
     }
 });
 

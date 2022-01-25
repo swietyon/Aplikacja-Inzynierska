@@ -11,9 +11,9 @@ const ProgressScreen = () => {
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 0, grade: 0, excNumb: 3},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 1, grade: 3, excNumb: 1},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 2, grade: 2, excNumb: 2},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 3, grade: 0, excNumb: 3},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 4, grade: 0, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 5, grade: 0, excNumb: 1},
+        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 3, grade: 10, excNumb: 3},
+        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 4, grade: 10, excNumb: 1},
+        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 5, grade: 10, excNumb: 1},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 6, grade: 3, excNumb: 1},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 7, grade: 5, excNumb: 3},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 8, grade: 3, excNumb: 3},
@@ -21,16 +21,20 @@ const ProgressScreen = () => {
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 10, grade: 1, excNumb: 1},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 11, grade: 1, excNumb: 2},
         { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 12, grade: 5, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 13, grade: 0, excNumb: 2},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 14, grade: 0, excNumb: 3}
+        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 13, grade: 10, excNumb: 2},
+        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 14, grade: 10, excNumb: 3}
     ]);
 
-    const [color,setColor] = useState("#154c79")
+    const [color,setColor] = useState("#154c79");
     
     const [rules, setRules] = useState([]);
-    const [avg, setAvg] = useState();
+    const [pressMe, setPressMe] = useState("Click");
 
-    function changeColor(h) {
+
+    function changeColor(avg) {
+        let h = Math.round(avg);
+        console.log(h);
+        setPressMe(avg);
         switch(h) {
             case 1:
                 return setColor("#660000");
@@ -55,7 +59,9 @@ const ProgressScreen = () => {
             default:
                 return setColor("#154c79");
         }
-    }
+    }    
+    
+    const [avg, setAvg] = useState();
     useEffect(() => {
         setRules(data); 
         if(data.length !=0){    
@@ -66,17 +72,12 @@ const ProgressScreen = () => {
                 i = i + 1;
             }
             while (i < data.length);
-
             const avarage = (sum/ data.length).toFixed(2);
             setAvg(avarage);
-            
         }
         else{
             setAvg(0);
         }
-
-        let h = Math.round(avg);
-        changeColor(h);
     }, []);    
 
     return (
@@ -129,9 +130,11 @@ const ProgressScreen = () => {
                 borderTopLeftRadius:30,
                 borderTopRightRadius:30}}>
                 <Text style={styles.dateResult}>Twoja średnia skala wynosi</Text>
-                <View style={styles.resultElement}>   
-                    <Text style={[styles.textResult, {color:color}]}>{avg}</Text> 
-                </View>
+                <TouchableOpacity onPress={() => changeColor(avg)}>
+                    <View style={styles.resultElement}>   
+                        <Text style={[styles.textResult, {color:color}]}>{pressMe}</Text> 
+                    </View>
+                </TouchableOpacity>
                 <Text style={styles.dateResult}>Dotychczasowa ilość postępów: {data.length}</Text>
             </View> 
 
@@ -154,7 +157,6 @@ const styles = StyleSheet.create({
       borderBottomWidth:2,
       borderRightWidth:2,
       borderLeftWidth:2,
-      opacity:0.9,
       borderBottomColor:'#154c79',
       borderRightColor:'#154c79',
       borderLeftColor:'#154c79',

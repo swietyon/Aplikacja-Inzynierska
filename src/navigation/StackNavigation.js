@@ -22,8 +22,8 @@ export {AuthStackScreen};
 
 const DiseasesStackScreen = (params) => {
   return(
-    <Stack.Navigator initialRouteName="DiseasesScreen" initialParams={{ params: params.route.params.params}}>
-    <Stack.Screen name="Diseases" component={DiseasesScreen} options={{ headerShown:false }} />
+    <Stack.Navigator initialRouteName="DiseasesScreen" initialParams={{ params: params.route.params}}>
+    <Stack.Screen name="Diseases" component={DiseasesScreen} initialParams={{ params: params.route.params}} options={{ headerShown:false }} />
     <Stack.Screen name="Excercises" component={ExcercisesScreen} options={{ headerShown:false }} />
   </Stack.Navigator>
   )

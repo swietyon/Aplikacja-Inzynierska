@@ -5,12 +5,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const DiseasesScreen = ( { navigation ,params }) => {
+const DiseasesScreen = ( { navigation ,route }) => {
     const s = require('../components/Styles'); 
     const diseasesURL = "https://bbcb-5-173-33-44.ngrok.io/diseases";
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-
+    const [currentUserId, setcurrentUserId] = useState();
     useEffect(() => {
         fetch(diseasesURL)
         .then((response) => response.json())
@@ -19,6 +19,7 @@ const DiseasesScreen = ( { navigation ,params }) => {
         })
         .catch((error) => alert(error))
         .then(setLoading(false));
+        setcurrentUserId(route.params.params);
     }, []);
     
     const [show, setShow] = useState(true)
@@ -55,7 +56,7 @@ const DiseasesScreen = ( { navigation ,params }) => {
                 }}
                 data={data}
                 renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", item, params)}}>    
+                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", {item, currentUserId})}}>    
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 

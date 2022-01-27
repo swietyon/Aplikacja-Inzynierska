@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     // console.log(authorization);
 
     if (!authorization) {
-        return res.status(401).send({error: 'Musisz być zalogowany'});
+        return res.status(401).send({error: 'Musisz być zalogowany1'});
     }
 
     const token = authorization.replace('Bearer ', '');

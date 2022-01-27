@@ -7,7 +7,6 @@ import { DiseasesStackScreen,  ProgressStackScreen} from "./StackNavigation";
 
 const Tab = createBottomTabNavigator();
 const BottomTabs = (params) => {
-  const currentUserId = params.route.params.params._id;
   return (
     <Tab.Navigator 
     initialRouteName={DiseasesStackScreen}
@@ -32,7 +31,7 @@ const BottomTabs = (params) => {
     >
       <Tab.Screen
         name="Terapie"
-        initialParams={{ params: currentUserId }}
+        initialParams={{ params: params.route.params.params._id }}
         component={DiseasesStackScreen}
         options={{ 
           tabBarIcon: ({ color, size }) => (

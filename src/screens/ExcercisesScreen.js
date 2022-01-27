@@ -13,11 +13,13 @@ const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
-    const {title, excercises} = route.params;
+    const {title, excercises} = route.params.item;
     const [number, setNumber] = useState();
-    const id = route.params._id;
+    
+    const [id, setId] = useState();
     useEffect(() => {
       setNumber(1);
+      setId(route.params.currentUserId.params);
     }, []);
     
     

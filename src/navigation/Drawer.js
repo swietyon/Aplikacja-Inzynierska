@@ -9,8 +9,7 @@ import SignOutScreen from "../screens/SignOutScreen";
 const Drawer = createDrawerNavigator();
 
 const DrawerScreen = ({route, navigation}) => {
-  const {email, user, birth, gender, username} = JSON.parse(route.params);
-
+  // const { _id, email, user, birth, gender, username} = JSON.parse(route.params);
   return (
     <Drawer.Navigator 
     initialRouteName="Home"

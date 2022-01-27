@@ -7,24 +7,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
-  const data = ([
-    { title: 'Zasada pierwsza', description: "Przed rozpoczęciem ćwiczeń należy skonsultować się z lekarzem w celu zdiagnozowania urazu oraz wyeliminowania przeciwwskazań zdrowotnych mogących mieć wpływ na zdrowie lub bezpieczeństwo ćwiczącego.", key: '1' },
-    { title: 'Zasada druga', description: "Ćwiczenia powinny być wykonywane na terenie płaskim, stabilnym. Zadbaj aby podłoże było suche, a pomieszczenie dobrze oświetlone", key: '2' },
-    { title: 'Zasada trzecia', description: "Na czas ćwiczeń zalecamy założyć wygodną odzież sportową, która nie będzie ograniczać ruchów ćwiczącego.", key: '3' }, 
-    { title: 'Zasada czwarta', description: "Ćwiczenia powinny być wykonywane zgodnie z wizualizacją zamieszczoną na filmiku oraz zgodnie z opisem, który znajduje się pod danym video określającym ćwiczenia", key: '4' },
-    { title: 'Zasada piąta', description: "Zestawy ćwiczeniowe powinny być dostosowane do wymaganej przez użytkownika skali trudności", key: '5' },
-    { title: 'Zasada szósta', description: "Ilość serii oraz powtórzeń powinna być progresywna (rosnąco)", key: '6' }, 
-    { title: 'Zasada siódma', description: "Podczas treningu ważna jest obserwacja sygnałów ciała. Niepoprawne lub nadmierne wykonywanie ćwiczeń mogą narazić zdrowie ćwiczącego. Jeżeli podczas ćwiczeń wystąpią niepowołane bóle mięśniowe, ucisiki w klatce piersiowej, nieregularna praca serca, zawroty głowy lub mdłości należy natychmiast zakończyć bieżące ćwiczenia.", key: '7' },
-    { title: 'Zasada ósma', description: "Zaczynając wykonywanie danego ćwiczenia należy przyjąć postawę wyjściową według zaleceń widocznych na filmiku przedstawiającym dane ćwiczenie", key: '8' },
-    { title: 'Rozgrzewka', description: "Przed przystąpieniem do ćwiczeń zalecane jest rozgrzanie danych partii mięśniowych", key: '9' },
-    { title: 'Twórcy', description: "Maksymilian Świętoń", key: '10' }
-  ])
+  const rulesURL = "https://bbcb-5-173-33-44.ngrok.io/rules";
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-  const [rules, setRules] = useState([]);
-
-  useEffect(() => {
-    setRules(data);
-  }, []);
+    useEffect(() => {
+        fetch(rulesURL)
+        .then((response) => response.json())
+        .then((json) => {
+            setData(json);
+        })
+        .catch((error) => alert(error))
+        .then(setLoading(false));
+    }, []);
 
   const [i,setI] = useState('0');
   const [helper, setHelper] = useState('0');
@@ -54,7 +49,8 @@ const RulesScreen = ({navigation}) => {
         <>
           <FlatList 
             style={styles.container}
-            data={rules}
+            data={data}
+            keyExtractor={(item) => item.key}
             renderItem={({item}) => (
               
                 <View style={styles.elements}>

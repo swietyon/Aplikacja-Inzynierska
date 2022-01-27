@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
 const AccountScreen = (params) => {
   const email = params.route.params.params.email;
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color:"#fff",
       textAlign:'center',
-      marginTop:1,
+      padding:6,
       borderBottomWidth:0.5,
       padding:7,
       

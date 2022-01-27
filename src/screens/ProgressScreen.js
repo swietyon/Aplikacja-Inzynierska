@@ -7,28 +7,23 @@ import { set } from 'react-native-reanimated';
 
 const ProgressScreen = () => {
     const s = require('../components/Styles');
-    const data = ([
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 0, grade: 0, excNumb: 3},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 1, grade: 3, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 2, grade: 2, excNumb: 2},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 3, grade: 10, excNumb: 3},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 4, grade: 10, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 5, grade: 10, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 6, grade: 3, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 7, grade: 5, excNumb: 3},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 8, grade: 3, excNumb: 3},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 9, grade: 3, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 10, grade: 1, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 11, grade: 1, excNumb: 2},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 12, grade: 5, excNumb: 1},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 13, grade: 10, excNumb: 2},
-        { date: '2022-11-11', description: "Rehabilitacja pachwiny", key: 14, grade: 10, excNumb: 3}
-    ]);
-
     const [color,setColor] = useState("#154c79");
-    
-    const [rules, setRules] = useState([]);
+
     const [pressMe, setPressMe] = useState("Click");
+
+    const progressURL = "https://bbcb-5-173-33-44.ngrok.io/progress";
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch(progressURL)
+        .then((response) => response.json())
+        .then((json) => {
+            setData(json);
+        })
+        .catch((error) => alert(error))
+        .then(setLoading(false));
+    }, []);
 
 
     function changeColor(avg) {
@@ -63,7 +58,6 @@ const ProgressScreen = () => {
     
     const [avg, setAvg] = useState();
     useEffect(() => {
-        setRules(data); 
         if(data.length !=0){    
             let i = 0;
             let sum = 0;
@@ -98,11 +92,12 @@ const ProgressScreen = () => {
                
                :
                <FlatList 
-                    data={rules}
+                    data={data}
+                    keyExtractor={item => item._id}
                     renderItem={({item}) => (
                         <View style={styles.elements}>
                             <View style={styles.element}>
-                                <Text style={styles.textStyle}>{item.date}</Text>
+                                <Text style={styles.textStyle}>{item.currentDate}</Text>
                                 <View style={{
                                     alignSelf:"flex-end",
                                     marginTop:-41,
@@ -116,7 +111,7 @@ const ProgressScreen = () => {
                                             {item.grade}
                                     </Text> 
                                 </View>
-                                <Text style={[styles.textStyle,{textAlign:"center", margin:0, fontSize:14, textTransform:'none'}]}>{item.description}, ćw: {item.excNumb}</Text>
+                                <Text style={[styles.textStyle,{textAlign:"center", margin:0, fontSize:14, textTransform:'none'}]}>{item.title}, ćw: {item.excNumb}</Text>
                             </View>                        
                         </View> 
                     )

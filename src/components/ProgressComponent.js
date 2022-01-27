@@ -1,13 +1,19 @@
-// in this component we send : {range}, {currentDate}, {currentUserId}, {props.title}, {props.excNumb}
+// in this component we send : {grade}, {currentDate}, {currentUserId}, {props.title}, {props.excNumb}
 
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useContext} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Slider from '@react-native-community/slider';
 
+import { Context as AuthContext } from '../context/AuthContext';
+
+
 const ProgressComponent = ( props ) => {
-    const [range, setRange] = useState(5)
+    const {addProgress} =  useContext(AuthContext);
+
+
+    const [grade, setGrade] = useState(5)
     const [sliding, setSliding] = useState("Inactive");
     const { excNumb, title, userId} = props;
     let separator = '-';
@@ -19,8 +25,8 @@ const ProgressComponent = ( props ) => {
 
     return (
         <View style={styles.container}>
-            <View style = {styles.rangeStyle}>
-                <Text style ={styles.circleValue}> {range} </Text>
+            <View style = {styles.resultStyle}>
+                <Text style ={styles.circleValue}> {grade} </Text>
             </View>
             <Slider
                 style={{width:280, height:50}}
@@ -31,14 +37,14 @@ const ProgressComponent = ( props ) => {
                 thumbTintColor='#fff'
                 value={5}
                 number={1}
-                onValueChange={value => setRange(parseInt(value))}
+                onValueChange={value => setGrade(parseInt(value))}
                 onSlidingStart={() => setSliding('Sliding')}
                 onSlidingComplete={() => setSliding("Done")}
             />
             {(sliding == "Inactive" || sliding == "Sliding") ? 
                 <Text style={styles.title}>Określ skalę trudności za pomocą suwaka</Text>
                 :
-                <TouchableOpacity onPress={ () => console.log(userId, title, excNumb, currentDate, range)}>
+                <TouchableOpacity onPress={ () => addProgress({userId, title, excNumb, currentDate, grade})}>
                     <View style={styles.gradeStyle}>
                         <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
                     </View>
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         fontWeight:"bold"
     },
-    rangeStyle: { 
+    resultStyle: { 
         height:60,
         width:60,
         backgroundColor:"#fff",

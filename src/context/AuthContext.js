@@ -3,6 +3,7 @@ import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import * as RootNavigation from "../navigation/RootNavigation";
 import { Alert } from "react-native";
+import tracker from "../api/tracker";
 
 //cases after function is executed
 const authReducer = (state, action) => {
@@ -46,6 +47,80 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
   }
 };
 
+const checkData = (dispatch) = async ({ userId, currentDate, excNumb}) => {
+  try {
+    const dataBefore = await trackerApi.get("/progress");
+    for(var i = 0; i < dataBefore.data.length; i++ ){
+      if(userId != dataBefore.data[i].userId && currentDate != dataBefore.data[i].currentDate && dataBefore.data[i].excNumb != excNumb){
+        return true;
+      }
+      else return false;
+    }
+  }
+  catch (err) {
+    console.log("NIE MOŻESZ DZISIAJ DODAĆ WIĘCEJ POSTĘPÓW DLA TEGO ĆWICZENIA");
+  }
+  
+}
+
+
+const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, grade }) => {
+  try {
+      
+      const dataBefore = await trackerApi.get("/progress");
+      var myProgresses = [];
+
+      for(var i = 0; i < dataBefore.data.length; i++ ){
+        if(userId == dataBefore.data[i].userId){
+          myProgresses.push(dataBefore.data[i])
+        }
+        else {
+        };
+      }
+
+      var isMyValue =  true;
+      for(var j = 0; j < myProgresses.length; j++){
+        if(title == myProgresses[j].title && excNumb == myProgresses[j].excNumb && currentDate == myProgresses[j].currentDate ){
+          isMyValue = true;
+          break;
+        }
+        else {
+          isMyValue = false;
+        }
+      }
+
+      if(isMyValue === false) {
+        const response = await trackerApi.post("/progress", { userId, title, excNumb, currentDate, grade });
+        dispatch({
+          type: "add_error",
+          payload: "Ocena została dodana! :)",
+        });
+      }
+      else {
+        dispatch({
+          type: "add_error",
+          payload: "Nie powiodło się przesłanie oceny dla tego ćwiczenia. Spróbuj w inny dzień",
+        });
+      }
+
+      const dataAfter = await trackerApi.get("/progress");
+      
+    // const response = await trackerApi.post("/progress", { userId, title, excNumb, currentDate, grade });
+    // const dataAfter = await trackerApi.get("/progress");
+    // const countOfData = dataAfter.data.length;
+    // const lastElement = dataAfter.data[countOfData-1];
+    // console.log(lastElement);
+    
+    // console.log(length);
+  }  
+  catch (err) {
+    dispatch({
+      type: "add_error",
+      payload: "Nie powiodło się przesłanie skali dla tego ćwiczenia. Spróbuj w inny dzień",
+    });
+  }
+};
+
 //Logging in
 const signin = (dispatch) => async ({ email, password }) => {
   try {
@@ -71,7 +146,6 @@ const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem("token");
   const user = await AsyncStorage.getItem("user");
   if (token) { 
-    console.log("uzytkownik",user);
     dispatch({ type: "signin", payload: token });
     RootNavigation.navigate("DrawerScreen", user);
   } else {
@@ -104,6 +178,6 @@ const alert = () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage, tryLocalSignin},
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin, addProgress},
   { token: null, errorMessage: "" }
 );

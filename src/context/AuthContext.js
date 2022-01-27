@@ -3,7 +3,7 @@ import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 import * as RootNavigation from "../navigation/RootNavigation";
 import { Alert } from "react-native";
-import tracker from "../api/tracker";
+
 
 //cases after function is executed
 const authReducer = (state, action) => {
@@ -47,23 +47,6 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
   }
 };
 
-const checkData = (dispatch) = async ({ userId, currentDate, excNumb}) => {
-  try {
-    const dataBefore = await trackerApi.get("/progress");
-    for(var i = 0; i < dataBefore.data.length; i++ ){
-      if(userId != dataBefore.data[i].userId && currentDate != dataBefore.data[i].currentDate && dataBefore.data[i].excNumb != excNumb){
-        return true;
-      }
-      else return false;
-    }
-  }
-  catch (err) {
-    console.log("NIE MOŻESZ DZISIAJ DODAĆ WIĘCEJ POSTĘPÓW DLA TEGO ĆWICZENIA");
-  }
-  
-}
-
-
 const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, grade }) => {
   try {
       
@@ -78,7 +61,7 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
         };
       }
 
-      var isMyValue =  true;
+      var isMyValue;
       for(var j = 0; j < myProgresses.length; j++){
         if(title == myProgresses[j].title && excNumb == myProgresses[j].excNumb && currentDate == myProgresses[j].currentDate ){
           isMyValue = true;
@@ -89,8 +72,9 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
         }
       }
 
-      if(isMyValue === false) {
+      if(isMyValue === false || myProgresses.length == 0) {
         const response = await trackerApi.post("/progress", { userId, title, excNumb, currentDate, grade });
+        myProgresses.push(response.data);
         dispatch({
           type: "add_error",
           payload: "Ocena została dodana! :)",
@@ -104,14 +88,7 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
       }
 
       const dataAfter = await trackerApi.get("/progress");
-      
-    // const response = await trackerApi.post("/progress", { userId, title, excNumb, currentDate, grade });
-    // const dataAfter = await trackerApi.get("/progress");
-    // const countOfData = dataAfter.data.length;
-    // const lastElement = dataAfter.data[countOfData-1];
-    // console.log(lastElement);
-    
-    // console.log(length);
+
   }  
   catch (err) {
     dispatch({
@@ -136,7 +113,7 @@ const signin = (dispatch) => async ({ email, password }) => {
     console.log(err);
     dispatch({
       type: "add_error",
-      payload: "Wystąpił błąd przy logowaniu",
+      payload: "Sprawdź czy Twój email i hasło są poprawne",
     });
   }
 };

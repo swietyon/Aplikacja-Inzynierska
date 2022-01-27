@@ -13,14 +13,24 @@ module.exports = StyleSheet.create({
         justifyContent: 'center', //Centered horizontally
         alignItems: 'center', //Centered vertically
     },
-    // SPACESNIFFER
     errorMessage: {
+        width:"90%",
         marginTop:-5,
         marginBottom:5,
         fontSize:14,
         color:'red',
         fontStyle:"italic",
         opacity:0.5,
+        textAlign:"center"
+    },
+    Message: {
+        width:"90%",
+        marginTop:-5,
+        marginBottom:5,
+        fontSize:14,
+        color:'orange',
+        fontStyle:"italic",
+        opacity:0.6,
         textAlign:"center"
     },
     Images: {

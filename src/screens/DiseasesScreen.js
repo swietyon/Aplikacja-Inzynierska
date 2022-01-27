@@ -1,16 +1,18 @@
 import React from 'react';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext} from 'react';
 import { Image, StyleSheet, View, FlatList, ActivityIndicator} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Context as AuthContext } from '../context/AuthContext';
 
 const DiseasesScreen = ( { navigation ,route }) => {
     const s = require('../components/Styles'); 
-    const diseasesURL = "https://bbcb-5-173-33-44.ngrok.io/diseases";
+    const diseasesURL = "http://838e-185-174-115-176.ngrok.io/diseases";
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [currentUserId, setcurrentUserId] = useState();
+    const {clearErrorMessage} =  useContext(AuthContext);
     useEffect(() => {
         fetch(diseasesURL)
         .then((response) => response.json())
@@ -56,7 +58,7 @@ const DiseasesScreen = ( { navigation ,route }) => {
                 }}
                 data={data}
                 renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", {item, currentUserId})}}>    
+                    <TouchableOpacity onPress={() => {navigation.navigate("Excercises", {item, currentUserId}); clearErrorMessage()}}>    
                         <View style={s.Element}>
                             <View style={s.TopPart}>
                                 <Text style={s.textStyle2}>{item.title}</Text> 

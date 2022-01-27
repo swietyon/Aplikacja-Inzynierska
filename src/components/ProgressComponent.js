@@ -1,5 +1,3 @@
-// in this component we send : {grade}, {currentDate}, {currentUserId}, {props.title}, {props.excNumb}
-
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useState, useContext} from 'react';
@@ -10,8 +8,8 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 
 const ProgressComponent = ( props ) => {
-    const {addProgress} =  useContext(AuthContext);
-
+    const s = require('../components/Styles'); 
+    const {state, addProgress, clearErrorMessage} =  useContext(AuthContext);
 
     const [grade, setGrade] = useState(5)
     const [sliding, setSliding] = useState("Inactive");
@@ -44,12 +42,18 @@ const ProgressComponent = ( props ) => {
             {(sliding == "Inactive" || sliding == "Sliding") ? 
                 <Text style={styles.title}>Określ skalę trudności za pomocą suwaka</Text>
                 :
-                <TouchableOpacity onPress={ () => addProgress({userId, title, excNumb, currentDate, grade})}>
-                    <View style={styles.gradeStyle}>
+                (state.errorMessage ? (
+                    <Text style={[s.Message]}>{state.errorMessage}</Text>
+                ) :                
+                <TouchableOpacity onPress={ () => {
+                    addProgress({userId, title, excNumb, currentDate, grade});
+                    }}>
+                    <View style={[styles.gradeStyle]}>
                         <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
                     </View>
-                </TouchableOpacity>
+                </TouchableOpacity>)
             }  
+            
             <StatusBar style="auto" />
         </View>
     )
@@ -88,11 +92,11 @@ const styles = StyleSheet.create({
         color:"#fff",
         padding:5,
         textAlign:"center",
+        color:"green",
         fontWeight:"bold",
     },
     gradeStyle: {
         width:150,
-        backgroundColor:"green",
         borderRadius:10,
         opacity:0.9,
         marginBottom:15

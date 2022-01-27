@@ -7,10 +7,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { LinearGradient } from 'expo-linear-gradient';
 
 import ProgressComponent from '../components/ProgressComponent';
+import { Context as AuthContext } from '../context/AuthContext';
+
 
 
 const ExcercisesScreen = ( { route, navigation } ) => {
     const s = require('../components/Styles'); 
+    const {state, addProgress, clearErrorMessage} =  useContext(AuthContext);
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     const {title, excercises} = route.params.item;
@@ -21,7 +24,12 @@ const ExcercisesScreen = ( { route, navigation } ) => {
       setNumber(1);
       setId(route.params.currentUserId.params);
     }, []);
-    
+
+
+    function setValues(number) {
+        setNumber(number);
+        clearErrorMessage();
+    }
     
         return (
             <>
@@ -66,12 +74,12 @@ const ExcercisesScreen = ( { route, navigation } ) => {
         {/* Buttons */}
             <View style={s.itemsInline}>
                 <View style={s.previousButton}>
-                    <TouchableOpacity title="Go back" onPress={() => {(number > 1) ? setNumber(number-1): null}}>    
+                    <TouchableOpacity title="Go back" onPress={() => {(number > 1) ? setValues(number-1): null}}>    
                         <MaterialCommunityIcons style={s.arrows} name='chevron-left'/>    
                     </TouchableOpacity>
                 </View>
                 <View style={s.nextButton}>
-                    <TouchableOpacity title="Go back" onPress={() => {(number < 3) ? setNumber(number+1): null}}> 
+                    <TouchableOpacity title="Go back" onPress={() => {(number < 3) ? setValues(number+1): null}}> 
                         <MaterialCommunityIcons style={s.arrows} name='chevron-right'/>
                     </TouchableOpacity>
                 </View>
@@ -98,6 +106,7 @@ const styles = StyleSheet.create({
 
     },
     titleContainer: {
+        alignSelf:"center",
         backgroundColor:"#fff",
         justifyContent: "center",
         height:60,
@@ -115,6 +124,7 @@ const styles = StyleSheet.create({
         fontWeight:"bold"
     },
     bottomInfo: {
+        alignSelf:"center",
         height:180,
         width:315,
         backgroundColor:"#154c79",

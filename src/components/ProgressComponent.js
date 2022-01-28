@@ -10,6 +10,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 const ProgressComponent = ( props ) => {
     const s = require('../components/Styles'); 
     const {state, addProgress, clearErrorMessage} =  useContext(AuthContext);
+    // console.log(state);
 
     const [grade, setGrade] = useState(5)
     const [sliding, setSliding] = useState("Inactive");
@@ -42,16 +43,17 @@ const ProgressComponent = ( props ) => {
             {(sliding == "Inactive" || sliding == "Sliding") ? 
                 <Text style={styles.title}>Określ skalę trudności za pomocą suwaka</Text>
                 :
-                (state.errorMessage ? (
-                    <Text style={[s.Message]}>{state.errorMessage}</Text>
-                ) :                
-                <TouchableOpacity onPress={ () => {
-                    addProgress({userId, title, excNumb, currentDate, grade});
-                    }}>
-                    <View style={[styles.gradeStyle]}>
-                        <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
-                    </View>
-                </TouchableOpacity>)
+                    (state.errorMessage ? 
+                        (<Text style={[s.Message]}>{state.errorMessage}</Text>) 
+                    :                
+                    <TouchableOpacity onPress={ () => {
+                        addProgress({userId, title, excNumb, currentDate, grade});
+                        }}>
+                        <View style={[styles.gradeStyle]}>
+                            <Text style={styles.onSaveTitle}>Zapisz ocenę</Text>
+                        </View>
+                    </TouchableOpacity>
+                )
             }  
             
             <StatusBar style="auto" />

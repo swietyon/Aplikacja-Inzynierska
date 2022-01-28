@@ -22,6 +22,8 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: "" };
     case "signout":
       return { token: null, errorMessage: "" };
+    case "progressData":
+      return { data: action.payload, errorMessage: action.payload};
     default:
       return state;
   }
@@ -48,8 +50,7 @@ const signup = (dispatch) => async ({ email, username, birth, gender, password})
 };
 
 const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, grade }) => {
-  try {
-      
+      //get values
       const dataBefore = await trackerApi.get("/progress");
       var myProgresses = [];
 
@@ -60,7 +61,7 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
         else {
         };
       }
-
+      //add values to array with progresses of every user
       var isMyValue;
       for(var j = 0; j < myProgresses.length; j++){
         if(title == myProgresses[j].title && excNumb == myProgresses[j].excNumb && currentDate == myProgresses[j].currentDate ){
@@ -71,31 +72,23 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
           isMyValue = false;
         }
       }
-
+      // creating proggress even if theres no values with one condition
       if(isMyValue === false || myProgresses.length == 0) {
         const response = await trackerApi.post("/progress", { userId, title, excNumb, currentDate, grade });
         myProgresses.push(response.data);
         dispatch({
           type: "add_error",
-          payload: "Ocena została dodana! :)",
+          payload: "Ocena została dodana! :)"
         });
-      }
-      else {
+        console.log(await AsyncStorage.setItem("myProgresses", JSON.stringify(myProgresses)));
+      } 
+      else{
         dispatch({
           type: "add_error",
           payload: "Nie powiodło się przesłanie oceny dla tego ćwiczenia. Spróbuj w inny dzień",
         });
       }
-
-      const dataAfter = await trackerApi.get("/progress");
-
-  }  
-  catch (err) {
-    dispatch({
-      type: "add_error",
-      payload: "Nie powiodło się przesłanie skali dla tego ćwiczenia. Spróbuj w inny dzień",
-    });
-  }
+      console.log(myProgresses);
 };
 
 //Logging in

@@ -7,6 +7,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
+
+
   const rulesURL = "http://838e-185-174-115-176.ngrok.io/rules";
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);

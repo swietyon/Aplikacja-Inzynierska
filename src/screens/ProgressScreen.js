@@ -1,28 +1,22 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
-import { makeStyles } from 'react-native-elements';
+import { useState, useEffect, useContext } from 'react';
+import { Text, View, StyleSheet, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { set } from 'react-native-reanimated';
+import { Context as AuthContext } from '../context/AuthContext';
 
 const ProgressScreen = () => {
     const s = require('../components/Styles');
+    const {state} =  useContext(AuthContext);
+    
     const [color,setColor] = useState("#154c79");
-
     const [pressMe, setPressMe] = useState("Click");
 
-    const progressURL = "https://bbcb-5-173-33-44.ngrok.io/progress";
-    const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    console.log("MOJE DANE",state.data);
     useEffect(() => {
-        fetch(progressURL)
-        .then((response) => response.json())
-        .then((json) => {
-            setData(json);
-        })
-        .catch((error) => alert(error))
-        .then(setLoading(false));
+        if(state.data != undefined)
+            setData(state.data);
     }, []);
 
 
@@ -55,30 +49,12 @@ const ProgressScreen = () => {
                 return setColor("#154c79");
         }
     }    
-    
-    const [avg, setAvg] = useState();
-    useEffect(() => {
-        if(data.length !=0){    
-            let i = 0;
-            let sum = 0;
-            do {
-                sum = sum + data[i].grade;
-                i = i + 1;
-            }
-            while (i < data.length);
-            const avarage = (sum/ data.length).toFixed(2);
-            setAvg(avarage);
-        }
-        else{
-            setAvg(0);
-        }
-    }, []);    
 
     return (
         <>
         <View style={{backgroundColor:"#fff"}}>
            <View style={styles.container}>
-               {(data.length == 0) 
+               {(data.length == undefined || data.length == 0) 
                ? 
                <>
                 <Text style={{textAlign:"center", marginTop:50, color:"#154c79", fontSize:25}}>
@@ -125,12 +101,12 @@ const ProgressScreen = () => {
                 borderTopLeftRadius:30,
                 borderTopRightRadius:30}}>
                 <Text style={styles.dateResult}>Twoja średnia skala wynosi</Text>
-                <TouchableOpacity onPress={() => changeColor(avg)}>
+                <TouchableOpacity onPress={() => changeColor(5)}>
                     <View style={styles.resultElement}>   
                         <Text style={[styles.textResult, {color:color}]}>{pressMe}</Text> 
                     </View>
                 </TouchableOpacity>
-                <Text style={styles.dateResult}>Dotychczasowa ilość postępów: {data.length}</Text>
+                <Text style={styles.dateResult}>Dotychczasowa ilość postępów: {(data.length == "undefined") ? 0 : data.length}</Text>
             </View> 
 
         </View>

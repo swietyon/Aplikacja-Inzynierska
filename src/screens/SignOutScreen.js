@@ -10,7 +10,7 @@ const SignOutScreen = () => {
         return (
             <>  
             <LinearGradient
-                colors={['white','#154c79']}
+                colors={['#fff','#154c79']}
                 style={s.container}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}

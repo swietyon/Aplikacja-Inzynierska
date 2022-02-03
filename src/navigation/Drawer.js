@@ -10,6 +10,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerScreen = ({route, navigation}) => {
   // const { _id, email, user, birth, gender, username} = JSON.parse(route.params);
+  console.log(route.params);
   return (
     <Drawer.Navigator 
     initialRouteName="Home"

@@ -9,7 +9,7 @@ const RulesScreen = ({navigation}) => {
   const s = require('../components/Styles');
 
 
-  const rulesURL = "http://602e-185-174-115-176.ngrok.io/rules";
+  const rulesURL = "http://830c-185-174-115-176.ngrok.io/rules";
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 

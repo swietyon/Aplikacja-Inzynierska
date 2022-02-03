@@ -8,10 +8,11 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 const DiseasesScreen = ( { navigation ,route }) => {
     const s = require('../components/Styles'); 
-    const diseasesURL = "http://602e-185-174-115-176.ngrok.io/diseases";
+    const diseasesURL = "http://830c-185-174-115-176.ngrok.io/diseases";
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [currentUserId, setcurrentUserId] = useState();
+    const [currentUserData, setcurrentUserData] = useState([]);
     const {clearErrorMessage} =  useContext(AuthContext);
     useEffect(() => {
         fetch(diseasesURL)
@@ -21,7 +22,9 @@ const DiseasesScreen = ( { navigation ,route }) => {
         })
         .catch((error) => alert(error))
         .then(setLoading(false));
-        setcurrentUserId(route.params.params);
+        setcurrentUserId(route.params.params.params._id);
+        setcurrentUserData(route.params.params.params)
+        console.log(route);
     }, []);
     
     const [show, setShow] = useState(true)

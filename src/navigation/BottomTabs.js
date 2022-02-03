@@ -31,7 +31,7 @@ const BottomTabs = (params) => {
     >
       <Tab.Screen
         name="Terapie"
-        initialParams={{ params: params.route.params.params._id }}
+        initialParams={{ params: params.route.params.params}}
         component={DiseasesStackScreen}
         options={{ 
           tabBarIcon: ({ color, size }) => (

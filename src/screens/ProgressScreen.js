@@ -13,7 +13,7 @@ const ProgressScreen = () => {
 
     const [data, setData] = useState([]);
 
-    console.log("MOJE DANE",state.data);
+    console.log("MOJE DANE",state);
     useEffect(() => {
         if(state.data != undefined)
             setData(state.data);

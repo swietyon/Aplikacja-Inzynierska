@@ -22,7 +22,7 @@ const ExcercisesScreen = ( { route, navigation } ) => {
     const [id, setId] = useState();
     useEffect(() => {
       setNumber(1);
-      setId(route.params.currentUserId.params);
+      setId(route.params.currentUserId);
     }, []);
 
 

@@ -14,10 +14,9 @@ const authReducer = (state, action) => {
       return { 
         user: action.payload,  
         token: action.payload, errorMessage: ""};
-    case "signup":
+    case "returnProgress":
       return { 
-        user: action.payload, 
-        token: action.payload, errorMessage: ""};
+        myProgresses: action.payload};
     case "clear_error_message":
       return { ...state, errorMessage: "" };
     case "signout":
@@ -32,12 +31,23 @@ const authReducer = (state, action) => {
 // Registration
 const signup = (dispatch) => async ({ email, username, birth, gender, password}) => {
   try {
+    const dataBefore = await trackerApi.get("/progress");
+      var myProgresses = [];
+
+      for(var i = 0; i < dataBefore.data.length; i++ ){
+        if(userId == dataBefore.data[i].userId){
+          myProgresses.push(dataBefore.data[i])
+        }
+        else {
+        };
+      }
+
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     // await AsyncStorage.setItem("userItem", response.data.user);
     const user = JSON.stringify(response.data.user);
     await AsyncStorage.setItem("user", user);
-    dispatch({ type: "signup", payload: response.data.token });
+    dispatch({ type: "signin", payload: response.data.token });
     RootNavigation.navigate('DrawerScreen', user);
     alert();
   }  
@@ -78,9 +88,9 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
         myProgresses.push(response.data);
         dispatch({
           type: "add_error",
-          payload: "Ocena została dodana! :)"
+          payload: "Ocena została dodana! :)",
         });
-        console.log(await AsyncStorage.setItem("myProgresses", JSON.stringify(myProgresses)));
+        
       } 
       else{
         dispatch({
@@ -90,6 +100,10 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
       }
       console.log(myProgresses);
 };
+
+const showProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, grade }) => {
+
+}
 
 //Logging in
 const signin = (dispatch) => async ({ email, password }) => {
@@ -148,6 +162,6 @@ const alert = () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage, tryLocalSignin, addProgress},
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin, addProgress, showProgress},
   { token: null, errorMessage: "" }
 );

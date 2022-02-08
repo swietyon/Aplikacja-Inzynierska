@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+//hashing password using bcrypt
 userSchema.pre('save', function(next) {
     const user = this;
     if(!user.isModified('password')) {
@@ -48,6 +49,7 @@ userSchema.pre('save', function(next) {
     });
 });
 
+//comparing password
 userSchema.methods.comparePassword = function comparePassword(candidatePassword) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {

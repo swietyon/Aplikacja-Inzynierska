@@ -5,6 +5,7 @@ const User = mongoose.model('User');
 
 const router = express.Router();
 
+//creating new user and token, after that token and user data will be sent
 router.post('/signup', async (req, res) => {
     const { username, email, password, birth, gender} = req.body;
     try {
@@ -18,6 +19,7 @@ router.post('/signup', async (req, res) => {
     }    
 });
 
+//sign in and checking if email exist, and if password is ok
 router.post('/signin', async (req,res) => {
     const {email, password} = req.body;
 

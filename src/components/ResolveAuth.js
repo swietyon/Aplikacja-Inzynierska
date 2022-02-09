@@ -1,6 +1,4 @@
-import React from 'react';
-import { useEffect, useContext, useState } from 'react';
-import { View, Text,StyleSheet } from 'react-native';
+import { useEffect, useContext} from 'react';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const ResolveAuth = (props) => {

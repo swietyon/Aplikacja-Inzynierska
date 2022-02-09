@@ -31,17 +31,6 @@ const authReducer = (state, action) => {
 // Registration
 const signup = (dispatch) => async ({ email, username, birth, gender, password}) => {
   try {
-    const dataBefore = await trackerApi.get("/progress");
-      var myProgresses = [];
-
-      for(var i = 0; i < dataBefore.data.length; i++ ){
-        if(userId == dataBefore.data[i].userId){
-          myProgresses.push(dataBefore.data[i])
-        }
-        else {
-        };
-      }
-
     const response = await trackerApi.post("/signup", { email, username, birth, gender, password });
     await AsyncStorage.setItem("token", response.data.token);
     // await AsyncStorage.setItem("userItem", response.data.user);
@@ -101,9 +90,6 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
       console.log(myProgresses);
 };
 
-const showProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, grade }) => {
-
-}
 
 //Logging in
 const signin = (dispatch) => async ({ email, password }) => {
@@ -162,6 +148,6 @@ const alert = () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage, tryLocalSignin, addProgress, showProgress},
+  { signin, signout, signup, clearErrorMessage, tryLocalSignin, addProgress},
   { token: null, errorMessage: "" }
 );

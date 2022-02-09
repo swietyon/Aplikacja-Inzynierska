@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, View, StyleSheet, FlatList, ScrollView, Image} from 'react-native';
+import { Text, View, StyleSheet, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const AccountScreen = (params) => {
@@ -7,7 +7,6 @@ const AccountScreen = (params) => {
   const birth = params.route.params.params.birth.substr(0,10);
   const username = params.route.params.params.username;
   const gender = params.route.params.params.gender;
-    const s = require('../components/Styles'); 
     return (
         <View>
           <View style={styles.top}>

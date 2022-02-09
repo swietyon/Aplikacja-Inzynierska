@@ -9,7 +9,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 const ProgressComponent = ( props ) => {
     const s = require('../components/Styles'); 
-    const {state, addProgress, clearErrorMessage} =  useContext(AuthContext);
+    const {state, addProgress} =  useContext(AuthContext);
     // console.log(state);
 
     const [grade, setGrade] = useState(5)

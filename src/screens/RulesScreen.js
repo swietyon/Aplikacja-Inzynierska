@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, FlatList, Image} from 'react-native';
+import { Text, View, StyleSheet, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const RulesScreen = ({navigation}) => {  
   const s = require('../components/Styles');
-
 
   const rulesURL = "http://830c-185-174-115-176.ngrok.io/rules";
   const [isLoading, setLoading] = useState(true);

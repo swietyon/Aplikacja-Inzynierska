@@ -5,26 +5,26 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Context as AuthContext } from '../context/AuthContext';
+import trackerApi from '../api/tracker';
 
 const DiseasesScreen = ( { navigation ,route }) => {
     const s = require('../components/Styles'); 
-    const diseasesURL = "http://830c-185-174-115-176.ngrok.io/diseases";
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [currentUserId, setcurrentUserId] = useState();
     const [currentUserData, setcurrentUserData] = useState([]);
     const {clearErrorMessage} =  useContext(AuthContext);
+
     useEffect(() => {
-        fetch(diseasesURL)
-        .then((response) => response.json())
-        .then((json) => {
-            setData(json);
+        trackerApi.get('/diseases')
+        .then(function (response) {
+          setData(response.data);
         })
         .catch((error) => alert(error))
         .then(setLoading(false));
         setcurrentUserId(route.params.params.params._id);
-        setcurrentUserData(route.params.params.params)
-        console.log(route);
+        setcurrentUserData(route.params.params.params);
     }, []);
     
     const [show, setShow] = useState(true)

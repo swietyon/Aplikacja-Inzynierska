@@ -3,20 +3,18 @@ import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import trackerApi from '../api/tracker';
 
 
-const RulesScreen = ({navigation}) => {  
+const RulesScreen = () => {  
   const s = require('../components/Styles');
-
-  const rulesURL = "http://830c-185-174-115-176.ngrok.io/rules";
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(rulesURL)
-        .then((response) => response.json())
-        .then((json) => {
-            setData(json);
+        trackerApi.get('/rules')
+        .then(function (response) {
+          setData(response.data);
         })
         .catch((error) => alert(error))
         .then(setLoading(false));

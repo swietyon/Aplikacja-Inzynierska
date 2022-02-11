@@ -8,7 +8,7 @@ const ProgressScreen = (route) => {
     const s = require('../components/Styles');
     const userId = route.route.params.params.params._id;
     const [color,setColor] = useState("#154c79");
-    const [pressMe, setPressMe] = useState(0);
+    const [pressMe, setPressMe] = useState("Click");
     const [data, setData] = useState([]);
     const [grades, setGrades] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -18,20 +18,20 @@ const ProgressScreen = (route) => {
         var myProgresses = [];
         var myGrades = [];
         trackerApi.get('/progress')
-            .then(function (response) {
-                for(var i = 0; i < response.data.length; i++){
-                    if(userId == response.data[i].userId){
-                    myProgresses.push(response.data[i]);
-                    myGrades.push(response.data[i].grade);
-                    }
-                    else {
-                    };
+        .then(function (response) {
+            for(var i = 0; i < response.data.length; i++){
+                if(userId == response.data[i].userId){
+                myProgresses.push(response.data[i]);
+                myGrades.push(response.data[i].grade);
                 }
-                setData(myProgresses);
-                setGrades(myGrades);
-            });
-            changeColor(grades);
-            setIsLoaded(true);
+                else {
+                };
+            }
+            setData(myProgresses);
+            setGrades(myGrades);
+            changeColor(myGrades);
+        });
+        setIsLoaded(true);
     }
 
     
@@ -40,7 +40,7 @@ const ProgressScreen = (route) => {
         var k = Math.round(h/grades.length)
         console.log(k);
         setPressMe(k);
-        switch(pressMe) {
+        switch(k) {
             case 1:
                 return setColor("#660000");
             case 2:

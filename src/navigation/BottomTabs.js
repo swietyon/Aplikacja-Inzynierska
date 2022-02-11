@@ -41,6 +41,7 @@ const BottomTabs = (params) => {
       />
       <Tab.Screen
         name="Postępy"
+        initialParams={{ params: params.route.params.params}}
         component={ProgressStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (

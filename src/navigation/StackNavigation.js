@@ -32,9 +32,9 @@ const DiseasesStackScreen = (params) => {
 export {DiseasesStackScreen};
 
 // ekran postępów
-const ProgressStackScreen = () => (
+const ProgressStackScreen = (params) => (
   <Stack.Navigator initialRouteName="Progress">
-    <Stack.Screen name="Progress" component={ProgressScreen} options={{ headerShown:false }}/>
+    <Stack.Screen name="Progress" component={ProgressScreen} initialParams={{ params: params.route.params}} options={{ headerShown:false }}/>
   </Stack.Navigator>
 );
 export {ProgressStackScreen};

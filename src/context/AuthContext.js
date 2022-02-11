@@ -79,7 +79,6 @@ const addProgress = (dispatch) => async ({ userId, title, excNumb, currentDate, 
           type: "add_error",
           payload: "Ocena została dodana! :)",
         });
-        
       } 
       else{
         dispatch({

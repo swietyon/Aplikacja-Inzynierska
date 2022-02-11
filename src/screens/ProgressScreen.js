@@ -1,30 +1,46 @@
 import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
 import { Text, View, StyleSheet, FlatList, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Context as AuthContext } from '../context/AuthContext';
+import trackerApi from '../api/tracker';
 
-const ProgressScreen = () => {
+const ProgressScreen = (route) => {
     const s = require('../components/Styles');
-    const {state} =  useContext(AuthContext);
-    
+    const userId = route.route.params.params.params._id;
     const [color,setColor] = useState("#154c79");
-    const [pressMe, setPressMe] = useState("Click");
-
+    const [pressMe, setPressMe] = useState(0);
     const [data, setData] = useState([]);
+    const [grades, setGrades] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    console.log("MOJE DANE",state);
-    useEffect(() => {
-        if(state.data != undefined)
-            setData(state.data);
-    }, []);
+    function loadData() {
+        setIsLoaded(false);
+        var myProgresses = [];
+        var myGrades = [];
+        trackerApi.get('/progress')
+            .then(function (response) {
+                for(var i = 0; i < response.data.length; i++){
+                    if(userId == response.data[i].userId){
+                    myProgresses.push(response.data[i]);
+                    myGrades.push(response.data[i].grade);
+                    }
+                    else {
+                    };
+                }
+                setData(myProgresses);
+                setGrades(myGrades);
+            });
+            changeColor(grades);
+            setIsLoaded(true);
+    }
 
-
-    function changeColor(avg) {
-        let h = Math.round(avg);
-        console.log(h);
-        setPressMe(avg);
-        switch(h) {
+    
+    function changeColor(grades) {
+        var h = grades.reduce((a, b) => a + b, 0);
+        var k = Math.round(h/grades.length)
+        console.log(k);
+        setPressMe(k);
+        switch(pressMe) {
             case 1:
                 return setColor("#660000");
             case 2:
@@ -54,20 +70,20 @@ const ProgressScreen = () => {
         <>
         <View style={{backgroundColor:"#fff"}}>
            <View style={styles.container}>
-               {(data.length == undefined || data.length == 0) 
-               ? 
-               <>
-                <Text style={{textAlign:"center", marginTop:50, color:"#154c79", fontSize:25}}>
-                    Nie masz jeszcze żadnych postępów
-                    </Text>
-                <Image 
-                            source={require('../img/sad.png')} 
-                            style={{width: 150, height: 80, marginTop: 20,alignSelf:"center"}} 
-                />
-               </>
-               
-               :
-               <FlatList 
+               { (isLoaded == false) 
+                    ? 
+                    <>
+                    <Text style={{textAlign:"center", marginTop:50, color:"#154c79", fontSize:25}}>
+                        Załaduj postępy poprzez kliknięcie na dole.
+                        </Text>
+                    <Image 
+                                source={require('../img/MedApp.png')} 
+                                style={{width: 300, height: 120, marginTop: 20, opacity:0.2, alignSelf:"center"}} 
+                    />
+                   </>
+                    :
+                    <>
+                    <FlatList 
                     data={data}
                     keyExtractor={item => item._id}
                     renderItem={({item}) => (
@@ -90,10 +106,15 @@ const ProgressScreen = () => {
                                 <Text style={[styles.textStyle,{textAlign:"center", margin:0, fontSize:14, textTransform:'none'}]}>{item.title}, ćw: {item.excNumb}</Text>
                             </View>                        
                         </View> 
-                    )
+                        )
+                    }
+                    />
+                    </>
+                    
                 }
-                />
-               } 
+               
+
+
             </View>
             <View style={{
                 backgroundColor:color,
@@ -101,9 +122,9 @@ const ProgressScreen = () => {
                 borderTopLeftRadius:30,
                 borderTopRightRadius:30}}>
                 <Text style={styles.dateResult}>Twoja średnia skala wynosi</Text>
-                <TouchableOpacity onPress={() => changeColor(5)}>
+                <TouchableOpacity onPress={() => { loadData()}}>
                     <View style={styles.resultElement}>   
-                        <Text style={[styles.textResult, {color:color}]}>{pressMe}</Text> 
+                        <Text style={[styles.textResult, {color:color}]}>{(pressMe == NaN) ? <Text>Click</Text> : pressMe}</Text> 
                     </View>
                 </TouchableOpacity>
                 <Text style={styles.dateResult}>Dotychczasowa ilość postępów: {(data.length == "undefined") ? 0 : data.length}</Text>
@@ -117,7 +138,7 @@ const ProgressScreen = () => {
 const styles = StyleSheet.create({
     container: {
         marginTop:-15,
-        height:"35%"
+        height:"35%",
     },
     elements: {
       width:"95%",

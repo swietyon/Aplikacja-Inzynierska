@@ -63,7 +63,7 @@ $ npm install
    
 After that copy your ngrok http and paste it to tracker.js file located in src/api.
 
-<img src="https://res.cloudinary.com/swietyon/image/upload/v1646046053/2_cyxw6m.jpg" width="150" title="ngrok">
+<img src="https://res.cloudinary.com/swietyon/image/upload/v1646046053/2_cyxw6m.jpg" width="550" title="ngrok">
 
 
 ## Simple build for production
